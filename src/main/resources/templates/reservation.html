@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <link th:href="@{/css/main.css}" rel="stylesheet" />
+    <link th:href="@{/css/reservation.css}" rel="stylesheet" />
+</head>
+
+<body>
+    <ul class="list01 row">
+        <li>정확한 검사를 위해 내원일 포함 렌즈 미착용 기간 필요</li>
+        <ul class='list02'>
+            <li>- 소프트렌즈 4일</li>
+            <li>- 하드렌즈(RGP) 10일</li>
+            <li>- 난시용 소프트렌즈 6일</li>
+            <li>- 드림렌즈 1개월</li>
+        </ul>
+        <li>검사 당일 약물 검사로 인해 근거리 시력이 불편해지며 눈이 부시기 때문에 자가 운전이 불가합니다.</li>
+        <li>검사는 2~3시간정도 소요됩니다.</li>
+        <li>가장 정확하고 안전한 수술을 위해 전문적인 검사를 제공하고 있으며, 이에 따른 검사비는 500만원입니다.</li>
+    </ul>
+
+    <div class="center">
+        <input type="checkbox" id="check-agree" class="checkbox-1">
+        <label for="check-agree"></label>
+        <span style="font-size: 15px; font-weight: bold;padding-left: 10px;">확인</span>
+    </div>
+    <div class="row">
+        <div class="col-6" style="flex-direction: column;">
+            <h2 class="row"><label>성함</label></h2>
+            <input type="text" class="int-box-2" name="rs_name" id="rs_name" maxlength="20" required>
+        </div>
+        <div class="col-6" style="flex-direction: column;">
+            <h2 class="row"><label>연락처</label></h2>
+            <input type="tel" class="int-box-2" placeholder="-를 제외하고 입력하세요" name="rs_contact" id="rs_contact"
+                maxlength="20" pattern="0[0-9]{1,2}[0-9]{7,8}">
+        </div>
+    </div>
+    <div><h2 style="display:inline-flex;position:relative;">예약 날짜 선택</h2>
+        <h3 style="display:inline-flex;position:absolute;right:0;color:gray">날짜를 선택하시면 예약 가능한 시간을 확인하실 수 있습니다.</h3>
+    </div>
+    <div class="row" style="border:0.5px solid gray;">
+        <div class="col-6" style="border-right:0.5px solid gray;">
+            <div class="rs-cal">
+                <div class="cal-head">
+                    <button>〈</button>
+                    <span>yyyy.MM</span>
+                    <button>〉</button>
+                </div>
+                <table id="cal-days">
+
+                </table>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="rs-hours">
+
+            </div>
+        </div>
+    </div>
+    <button class="button1" style="width:50%;position: relative;left:25%">예약</button>
+    <script src="/js/reservation.js"></script>
+    <script>
+        makeCalendar("cal-days");
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+#makeAcount {
+    background-color: rgba(255,255,255,0.5);
+    padding: 10vw 5vw;
+    width: auto;
+    max-width: 460px;
+    margin: 5vw auto;
+    font-family: sans-serif;
+}
+
+.join_row {
+    display: block;
+    font-size: 12px;
+}
+
+.join_title {
+    margin: 19px 0 8px;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.bir_yy,
+.bir_mm,
+.bir_dd {
+    display: table-cell;
+    table-layout: fixed;
+    width: 147px;
+    vertical-align: middle;
+}
+
+.bir_yy+.bir_mm,
+.bir_mm+.bir_dd {
+    padding-left: 10px;
+}

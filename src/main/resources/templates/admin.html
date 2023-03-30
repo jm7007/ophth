@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <title>JM안과</title>
+    <link th:href="@{/css/main.css}" rel="stylesheet" />
+</head>
+<body>
+    <div id="top-nav"></div>
+    <div class="container">
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>account</th>
+                        <th>password</th>
+                        <th>name</th>
+                        <th>contact</th>
+                        <th>email</th>
+                        <th>gender</th>
+                        <th>birth</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="user : ${users}">
+                        <td th:text="${user.id}"></td>
+                        <td th:text="${user.account}"></td>
+                        <td th:text="${user.password}"></td>
+                        <td th:text="${user.name}"></td>
+                        <td th:text="${user.contact}"></td>
+                        <td th:text="${user.email}"></td>
+                        <td th:text="${user.gender}"></td>
+                        <td th:text="${user.birth}"></td>
+                        <td th:text="${user.admin}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div><!-- /container -->
+
+    <script src="/js/mainUI.js"></script>
+    <script>
+        makeTopNav();
+    </script>
+</body>
+</html>
