@@ -45,10 +45,10 @@
     <div class="row" style="border:0.5px solid gray;">
         <div class="col-6" style="border-right:0.5px solid gray;">
             <div class="rs-cal">
-                <div class="cal-head">
-                    <button>〈</button>
-                    <span>yyyy.MM</span>
-                    <button>〉</button>
+                <div id="cal-head">
+                    <button onclick="updateCalendar(0)">〈</button>
+                    <span id = "cal-year-month">yyyy.MM</span>
+                    <button onclick="updateCalendar(1)">〉</button>
                 </div>
                 <table id="cal-days">
 
@@ -62,9 +62,34 @@
         </div>
     </div>
     <button class="button1" style="width:50%;position: relative;left:25%">예약</button>
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>name</th>
+                <th>contact</th>
+                <th>datetime</th>
+                <th>info</th>
+                <th>user_id</th>
+                <th>ifuser</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="reservation : ${reservations}">
+                <td th:text="${reservation.rs_id}"></td>
+                <td th:text="${reservation.rs_name}"></td>
+                <td th:text="${reservation.rs_contact}"></td>
+                <td th:text="${reservation.rs_datetime}"></td>
+                <td th:text="${reservation.rs_info}"></td>
+                <td th:text="${reservation.rs_user_id}"></td>
+                <td th:text="${reservation.rs_ifuser}"></td>
+            </tr>
+        </tbody>
+    </table>
     <script src="/js/reservation.js"></script>
     <script>
         makeCalendar("cal-days");
+
     </script>
 </body>
 

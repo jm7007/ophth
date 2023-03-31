@@ -20,14 +20,17 @@
     width:40%;
     color:rgba(0,0,0,0.6);
 }
-.cal-head{
+#cal-head{
     margin-bottom: 20px;
 }
-.cal-head *{
+#cal-head *{
     font-size: 20px;
     border: none;
     background: none;
     margin: 0 10px;
+}
+#cal-head button{
+    cursor: pointer;
 }
 .rs-cal{
     display: flex;

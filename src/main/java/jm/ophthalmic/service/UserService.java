@@ -25,8 +25,7 @@ public class UserService {
         validateDuplicateAccount(user);
         //이메일 중복 검증
         validateDuplicateEmail(user);
-        //DB 저장
-        //생성된 id 조회
+        //DB 저장, 생성된 id 조회
         return userRepository.save(user).getId();
     }
     private void validateDuplicateAccount(User user){
