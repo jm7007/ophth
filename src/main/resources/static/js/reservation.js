@@ -61,7 +61,7 @@ const updateCalendar = (() => {
             }
             time.setFullYear(year);
             time.setMonth(month);
-            document.getElementById("cal-year-month").innerHTML = (year + "." + (month + 1));
+            document.getElementById("cal-year-month").innerHTML = year + "." + (month + 1);
             //내용 및 속성 채우기
             fillCalendar(time);
         }
