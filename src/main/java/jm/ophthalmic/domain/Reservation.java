@@ -1,7 +1,6 @@
 package jm.ophthalmic.domain;
 
 import java.time.LocalDateTime;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,8 +11,10 @@ import lombok.ToString;
 @Entity
 @Data
 @ToString
-public class Reservation {
 
+
+public class Reservation {
+    
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long rs_id;
     private String rs_name;
@@ -22,4 +23,5 @@ public class Reservation {
     private String rs_info;
     private Long rs_user_id;
     private Byte rs_ifuser;
+
 }

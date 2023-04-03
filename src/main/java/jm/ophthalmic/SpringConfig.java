@@ -5,10 +5,7 @@ import org.springframework.context.annotation.Configuration;
 
 import jakarta.persistence.EntityManager;
 import jm.ophthalmic.repository.JpaUserRepository;
-import jm.ophthalmic.repository.MemoryReservationRepository;
-import jm.ophthalmic.repository.ReservationRepository;
 import jm.ophthalmic.repository.UserRepository;
-import jm.ophthalmic.service.ReservationService;
 import jm.ophthalmic.service.UserService;
 
 @Configuration
@@ -23,17 +20,9 @@ public class SpringConfig {
     public UserService userService(){
         return new UserService(userRepository());
     }
-    @Bean
-    public ReservationService reservationService(){
-        return new ReservationService(reservationRepository());
-    }
     @Bean 
     UserRepository userRepository(){
         return new JpaUserRepository(em);
-    }
-    @Bean
-    ReservationRepository reservationRepository(){
-        return new MemoryReservationRepository();
     }
 
     
