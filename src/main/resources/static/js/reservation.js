@@ -123,7 +123,7 @@ const showRSwithCal = (function (reservations) {
             hourinput = document.createElement("input");
             hourinput.setAttribute("type", "radio");
             hourinput.setAttribute("id", `rs-date-${year}-${month + 1}-${dayOfMonth}-${rshour}`);
-            hourinput.setAttribute("name", `rs-date-${year}-${month + 1}-${dayOfMonth}`);
+            hourinput.setAttribute("name", `rs_datetime`);
             hourinput.setAttribute("value", day);
             hourlabel = document.createElement("label");
             hourlabel.setAttribute("for", `rs-date-${year}-${month + 1}-${dayOfMonth}-${rshour}`);
@@ -142,4 +142,14 @@ const showRSwithCal = (function (reservations) {
             container.appendChild(hourlabel);
         }
     });
-});
+})(reservations);
+
+//서브밋 기능(가상의 포스트 객체 생성 및 리퀘스트
+function submitRS(){
+    //value 추출
+    const rs_name = document.getElementsByName("rs_name")[0].value;
+    const rs_contact = document.getElementsByName("rs_contact")[0].value;
+    const rs_datetime = document.querySelector("input[name='rs_datetime']:checked").value;
+    const rs_info = document.getElementsByName("rs_info")[0].value;
+    //입력 조건 설정, 타입 검증
+}

@@ -11,8 +11,6 @@ import lombok.ToString;
 @Entity
 @Data
 @ToString
-
-
 public class Reservation {
     
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)

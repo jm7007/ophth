@@ -487,6 +487,12 @@ input[class="checkbox-1"]:checked + label::after{
   .int-box-2:focus{
     border-color: dodgerblue;
   }
+  .textarea-1{
+    height:250px;
+  }
+  .textarea-1:focus{
+    border-color:dodgerblue;
+  }
   input[type="radio"]{
     display:none;
   }
