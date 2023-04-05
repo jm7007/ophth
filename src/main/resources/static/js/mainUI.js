@@ -13,15 +13,11 @@ function makeTopNav(){
     //header 에 headarea id div 생성
     const headArea = document.createElement("div");
     headArea.setAttribute("id","headarea");
-    headArea.setAttribute("class","row");
     headArea.setAttribute("class","background-grad")
     header.appendChild(headArea);
     //id:headarea 안에 로고 area 생성
     const logo_area = document.createElement("div");
-    logo_area.setAttribute("style",""
-    +"margin:0px;"
-    +"position:flex"
-    );
+    logo_area.setAttribute("style","margin:0px;");
     logo_area.setAttribute("class","col-2");
     headArea.appendChild(logo_area); 
     //id:headarea 안에 a 생성
@@ -41,7 +37,6 @@ function makeTopNav(){
     const nav = document.createElement("ul");
     nav.setAttribute("class","topnav");
     nav.innerHTML=""
-    +"<li><a href='board'>게시판</a></li>"
     +"<li><a href='join'>회원가입</a></li>"
     +"<li><a href='news'>JM 소식</a></li>"
     +"<li><a href='admin'>관리자</a></li>";
@@ -76,18 +71,3 @@ function makeTopNav(){
     loginWindowClose.setAttribute("onclick","loginWindowOnOff()");
     loginWindow.appendChild(loginWindowClose);
 }
-const sidePageDisplay = (function(){
-    const sidePageClassList = document.getElementById("side-page").classList;
-    let onOff = 0;
-    return function(){
-        if(onOff == 0){
-            sidePageClassList.remove("side-page-slide-aniOff");
-            sidePageClassList.add("side-page-slide-ani");
-            onOff = 1;
-        }else{
-            sidePageClassList.remove("side-page-slide-ani");
-            sidePageClassList.add("side-page-slide-aniOff");
-            onOff = 0;
-        }
-    }
-})();

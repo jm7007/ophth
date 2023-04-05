@@ -124,7 +124,7 @@ const showRSwithCal = (function (reservations) {
             hourinput.setAttribute("type", "radio");
             hourinput.setAttribute("id", `rs-date-${year}-${month + 1}-${dayOfMonth}-${rshour}`);
             hourinput.setAttribute("name", `rs_datetime`);
-            hourinput.setAttribute("value", day);
+            hourinput.setAttribute("value",`${year},${month + 1},${dayOfMonth},${rshour}`);
             hourlabel = document.createElement("label");
             hourlabel.setAttribute("for", `rs-date-${year}-${month + 1}-${dayOfMonth}-${rshour}`);
             for (let reserv of rs) {
@@ -144,12 +144,63 @@ const showRSwithCal = (function (reservations) {
     });
 })(reservations);
 
-//서브밋 기능(가상의 포스트 객체 생성 및 리퀘스트
+//서브밋 기능(가상의 form 생성 및 submit)
 function submitRS(){
     //value 추출
     const rs_name = document.getElementsByName("rs_name")[0].value;
     const rs_contact = document.getElementsByName("rs_contact")[0].value;
-    const rs_datetime = document.querySelector("input[name='rs_datetime']:checked").value;
+    let rs_datetime;
+    try{
+    rs_datetime = document.querySelector("input[name='rs_datetime']:checked").value;
+    }catch(e){
+        alert("예약 시간을 선택하지 않았습니다.");
+        return;
+    }
     const rs_info = document.getElementsByName("rs_info")[0].value;
-    //입력 조건 설정, 타입 검증
+    //regex
+    const nameRegex1 = /[a-zA-Z]{3,20}/;
+    const nameRegex2 = /[가-힣]{2,10}/;
+    const contactRegex = /0[0-9]{1,2}[0-9]{7,8}/;
+    //regex 검증
+    if(!rs_name.match(nameRegex1) && !rs_name.match(nameRegex2)){
+        alert("이름 형식이 잘못되었습니다.");
+        return;
+    }else if(!rs_contact.match(contactRegex)){
+        alert("번호 형식이 잘못되었습니다.");
+        return;
+    }else if(rs_info.length==0){
+        alert("방문 목적을 기입해주세요.");
+        return;
+    }
+
+    //가상의 form 생성 및 value 입력
+    const form = document.createElement("form");
+    form.setAttribute("action","/rs/new");
+    form.setAttribute("method","post");
+    form.setAttribute("target","_parent")
+    const valueNames = ["rs_name","rs_contact","rs_datetime","rs_info"];
+    const values = [rs_name,rs_contact,rs_datetime,rs_info];
+    //각 value를 전달할 input객체 생성 메서드
+    const preparedForm = putValue(valueNames,values,form);
+    //submit
+    document.body.appendChild(preparedForm);
+    alert("예약이 완료되었습니다.");
+    preparedForm.submit();
+}
+function putValue(valueNames, values,form){
+    let valueName;
+    let value;
+    let input;
+    let result = form;
+    while(true){
+        if(valueNames[0] == null) break;
+        valueName = valueNames.pop();
+        value = values.pop();
+        input = document.createElement("input");
+        input.setAttribute("type","text");
+        input.setAttribute("name",valueName);
+        input.setAttribute("value",value);
+        result.appendChild(input);
+    }
+    return result;
 }

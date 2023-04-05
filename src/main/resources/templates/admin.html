@@ -7,31 +7,62 @@
     <meta http-equiv="Cache-Control" content="no-cache" />
     <title>JM안과</title>
     <link th:href="@{/css/main.css}" rel="stylesheet" />
+    <link th:href="@{/css/admin.css}" rel="stylesheet" />
 </head>
+
 <body>
     <div id="top-nav"></div>
-    <div class="container">
-        <div>
-            <table>
+    <div class="row-11">
+        <div id="admin-nav" class="col-2">
+            <h1 class="row">관리자 메뉴</h1>
+            <ul class="row-12">
+                <li id = "btn-rs">예약 관리</li>
+                <li id = "btn-user">회원 관리</li>
+            </ul>
+        </div>
+        <div class="col-10">
+            <table id = "table-rs" class = "table-1">
                 <thead>
                     <tr>
-                        <th>#</th>
-                        <th>account</th>
-                        <th>password</th>
-                        <th>name</th>
-                        <th>contact</th>
-                        <th>email</th>
-                        <th>gender</th>
-                        <th>birth</th>
+                        <th>id</th>
+                        <th>이름</th>
+                        <th>연락처</th>
+                        <th>예약시간</th>
+                        <th>상담내용</th>
+                        <th>회원 여부</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="reservation : ${reservations}">
+                        <td th:text="${reservation.rs_id}"></td>
+                        <td th:text="${reservation.rs_name}"></td>
+                        <td th:text="${reservation.rs_contact}"></td>
+                        <td th:text="${reservation.rs_datetime}"></td>
+                        <td th:text="${reservation.rs_info}"></td>
+                        <td th:text="${reservation.rs_ifuser}"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <table id="table-user" class="table-1 hidden">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>이름</th>
+                        <th>연락처</th>
+                        <th>아이디</th>
+                        <th>비밀번호</th>
+                        <th>메일</th>
+                        <th>성별</th>
+                        <th>생일</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr th:each="user : ${users}">
                         <td th:text="${user.id}"></td>
-                        <td th:text="${user.account}"></td>
-                        <td th:text="${user.password}"></td>
                         <td th:text="${user.name}"></td>
                         <td th:text="${user.contact}"></td>
+                        <td th:text="${user.account}"></td>
+                        <td th:text="${user.password}"></td>
                         <td th:text="${user.email}"></td>
                         <td th:text="${user.gender}"></td>
                         <td th:text="${user.birth}"></td>
@@ -40,11 +71,12 @@
                 </tbody>
             </table>
         </div>
-    </div><!-- /container -->
-
+    </div>
     <script src="/js/mainUI.js"></script>
+    <script src="/js/admin.js"></script>
     <script>
         makeTopNav();
     </script>
 </body>
+
 </html>

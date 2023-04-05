@@ -36,7 +36,7 @@
         <div class="col-6" style="flex-direction: column;">
             <h2 class="row"><label>연락처</label></h2>
             <input type="tel" class="int-box-2" placeholder="-를 제외하고 입력하세요" name="rs_contact" id="rs_contact"
-                maxlength="20" pattern="0[0-9]{1,2}[0-9]{7,8}">
+                maxlength="20">
         </div>
     </div>
     
@@ -57,7 +57,7 @@
             </div>
         </div>
         <div class="col-6">
-        <div id="rs-hours"></div>
+        <div id="rs-hours" style="width:100%;"></div>
         </div>
     </div>
     <h2 style="display:inline-flex;"><label>방문 목적</label></h2>
@@ -67,30 +67,7 @@
     </div>
     <div>
     <button class="button1" onclick="submitRS()" style="width:50%;position: relative;left:25%">예약</button>
-    <table>
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>name</th>
-                <th>contact</th>
-                <th>datetime</th>
-                <th>info</th>
-                <th>user_id</th>
-                <th>ifuser</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="reservation : ${reservations}">
-                <td th:text="${reservation.rs_id}"></td>
-                <td th:text="${reservation.rs_name}"></td>
-                <td th:text="${reservation.rs_contact}"></td>
-                <td th:text="${reservation.rs_datetime}"></td>
-                <td th:text="${reservation.rs_info}"></td>
-                <td th:text="${reservation.rs_user_id}"></td>
-                <td th:text="${reservation.rs_ifuser}"></td>
-            </tr>
-        </tbody>
-    </table>
+    
     <script th:inline="javascript">
         const reservations = /*[[${reservations}]]*/ "reservations";
     </script>
