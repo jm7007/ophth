@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import org.springframework.transaction.annotation.Transactional;
 
+import jm.ophthalmic.controller.form.LoginForm;
 import jm.ophthalmic.domain.User;
 import jm.ophthalmic.repository.UserRepository;
 
@@ -56,5 +57,13 @@ public class UserService {
     }
     public Optional<User> modifyUser(Long id, Map<String,Object> updateClauses){
         return userRepository.modifyUser(id, updateClauses);
+    }
+
+    //로그인
+    public Optional<User> login(LoginForm loginForm)throws Exception{
+
+        return Optional.ofNullable(userRepository.findbyAccount(loginForm.getAccount()))
+        .filter(user -> user.get().getPassword().equals(loginForm.getPassword()))
+        .orElse(null);
     }
 }

@@ -21,20 +21,21 @@
         <li>검사 당일 약물 검사로 인해 근거리 시력이 불편해지며 눈이 부시기 때문에 자가 운전이 불가합니다.</li>
         <li>검사는 2~3시간정도 소요됩니다.</li>
         <li>가장 정확하고 안전한 수술을 위해 전문적인 검사를 제공하고 있으며, 이에 따른 검사비는 500만원입니다.</li>
+        <div class="center" style ="margin-top:20px;">
+            <input type="checkbox" id="check-agree" class="checkbox-1">
+            <label for="check-agree"></label>
+            <span style="font-size: 15px; font-weight: bold;padding-left: 10px;">확인</span>
+        </div>
     </ul>
 
-    <div class="center">
-        <input type="checkbox" id="check-agree" class="checkbox-1">
-        <label for="check-agree"></label>
-        <span style="font-size: 15px; font-weight: bold;padding-left: 10px;">확인</span>
-    </div>
+    
     <div class="row">
         <div class="col-6" style="flex-direction: column;">
-            <h2 class="row"><label>성함</label></h2>
+            <h2 class="row"><label for="rs_name">성함</label></h2>
             <input type="text" class="int-box-2" name="rs_name" id="rs_name" maxlength="20" required>
         </div>
         <div class="col-6" style="flex-direction: column;">
-            <h2 class="row"><label>연락처</label></h2>
+            <h2 class="row"><label for="rs_contact">연락처</label></h2>
             <input type="tel" class="int-box-2" placeholder="-를 제외하고 입력하세요" name="rs_contact" id="rs_contact"
                 maxlength="20">
         </div>
@@ -60,7 +61,7 @@
         <div id="rs-hours" style="width:100%;"></div>
         </div>
     </div>
-    <h2 style="display:inline-flex;"><label>방문 목적</label></h2>
+    <h2 style="display:inline-flex;"><label for="rs_info">방문 목적</label></h2>
     <h3 style="display:inline-flex;right: 0;color: gray;position: absolute;">현재 증상이나 원하시는 상담 내용을 최대한 자세하게 적어주세요. </h3>
     <div class = "row">
         <textarea class="textarea-1 col-12" name="rs_info" id="rs_info" maxlength="200" required></textarea>

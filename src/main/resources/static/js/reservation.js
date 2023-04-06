@@ -112,11 +112,9 @@ const showRSwithCal = (function (reservations) {
     let day;
     let tmp;
     const rs = reservations;
-    console.log(rs);
     return ((year, month, dayOfMonth) => {
         //이전 데이터 초기화
         container.innerHTML = "";
-        
         for (let i = 0; i < 6; i++) {
             rshour = (i < 4) ? i + 9 : i + 10;
             day = new Date(`${month + 1},${dayOfMonth},${year},${rshour}:00:00`);

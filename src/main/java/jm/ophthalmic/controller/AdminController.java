@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import jakarta.servlet.http.HttpSession;
 import jm.ophthalmic.domain.Reservation;
 import jm.ophthalmic.domain.User;
 import jm.ophthalmic.service.ReservationService;
@@ -23,7 +24,10 @@ public class AdminController {
     }
 
     @GetMapping("admin")
-    public String admin(Model model){
+    public String admin(Model model,HttpSession session){
+        if(session.getAttribute("admin") ==null || (byte)session.getAttribute("admin") != 1){
+            return "wrong";
+        }
         List<User> users = userService.findUsers();
         model.addAttribute("users", users);
         List<Reservation> reservations = reservationService.findReservations();

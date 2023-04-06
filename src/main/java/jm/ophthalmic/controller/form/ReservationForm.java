@@ -1,4 +1,4 @@
-package jm.ophthalmic.controller;
+package jm.ophthalmic.controller.form;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;

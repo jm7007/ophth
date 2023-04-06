@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <title>JM안과</title>
+    <link th:href="@{/css/main.css}" rel="stylesheet" />
+    <link th:href="@{/css/login.css}" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="wrapper">
+        <a href="/" class="login_logo"><img src="/images/002.png"></a>
+        <form action="login" method="post">
+            <div class="login_wrap">
+                <div class="login_intbox">
+                    <div class="row">
+                        <img src="/images/ic_person.png">
+                        <input type="text" id="user_id" name="user_id" placeholder="아이디" maxlength="20" required>
+                    </div>
+                    <div class="row">
+                        <img src="/images/ic_lock.png">
+                        <input type="password" id="user_password" name="user_password" placeholder="비밀번호" maxlength="20"
+                            required>
+                    </div>
+                </div>
+                <div class="row" style="margin:10px 0 0 5px;align-items:center;">
+                    <input type="checkbox" class="checkbox-1" id="id_save" name="id_save">
+                    <label for="id_save"></label>
+                    <span style="margin-left: 10px; font-size:14px;">아이디 저장</span>
+                </div>
+                <button type="submit" class="button1" style="margin-top:40px;">로그인</button>
+            </div>
+        </form>
+        <div class="login_help">
+            <a href="#">비밀번호 찾기</a>
+            |<a href="#">아이디 찾기</a>
+            |<a href="#">회원가입</a>
+        </div>
+    </div>
+</body>
+
+</html>

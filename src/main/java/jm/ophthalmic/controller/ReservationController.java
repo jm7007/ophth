@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import jakarta.persistence.EntityManager;
+import jm.ophthalmic.controller.form.ReservationForm;
 import jm.ophthalmic.domain.Reservation;
 import jm.ophthalmic.service.ReservationService;
 
