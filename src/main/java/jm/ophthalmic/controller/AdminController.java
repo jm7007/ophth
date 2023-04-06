@@ -26,7 +26,7 @@ public class AdminController {
     @GetMapping("admin")
     public String admin(Model model,HttpSession session){
         if(session.getAttribute("admin") ==null || (byte)session.getAttribute("admin") != 1){
-            return "wrong";
+            return "execption/wrong";
         }
         List<User> users = userService.findUsers();
         model.addAttribute("users", users);

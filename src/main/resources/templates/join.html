@@ -54,22 +54,22 @@
                     <div class="bir_wrap">
                         <div class="bir_yy">
                             <span class="ps_box">
-                                <input type="text" id="int_yy" name="int_yy" placeholder="Year(4자리)" class="int_box"
-                                    maxlength="4">
+                                <input type="number" id="int_yy" name="int_yy" placeholder="Year(4자리)" class="int_box"
+                                    maxlength="4" onfocusout="changeMaxDate()">
                             </span>
                         </div>
                         <div class="bir_mm">
                             <span class="ps_box">
-                                <select id="int_mm" class="sel" name="int_mm" placeholder="Month">
-                                    <option value="01">1</option>
-                                    <option value="02">2</option>
-                                    <option value="03">3</option>
-                                    <option value="04">4</option>
-                                    <option value="05">5</option>
-                                    <option value="06">6</option>
-                                    <option value="07">7</option>
-                                    <option value="08">8</option>
-                                    <option value="09">9</option>
+                                <select id="int_mm" class="sel" name="int_mm" placeholder="Month" onchange="changeMaxDate()">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
                                     <option value="10">10</option>
                                     <option value="11">11</option>
                                     <option value="12">12</option>
@@ -78,8 +78,8 @@
                         </div>
                         <div class="bir_dd">
                             <span class="ps_box">
-                                <input type="text" id="int_dd" name="int_dd" placeholder="Day" class="int_box"
-                                    maxlength="2">
+                                <input type="number" id="int_dd" name="int_dd" placeholder="Day" class="int_box"
+                                    maxlength="2" min="1" max="31">
                             </span>
                         </div>
                     </div>
@@ -107,7 +107,25 @@
             </form>
         </div>
     </div>
+    <!--session-->
+    <div id="ss_account" class="hidden" th:text="${session.account}"></div>
+    <div id="ss_admin" class="hidden" th:text="${session.admin}"></div>
+    <!--/session-->
     <script src="/js/mainUI.js"></script>
+    <script>
+        //회원가입 생일 필터링
+        const today = new Date();
+        //150년 전부터 현재 연도 까지만 입력가능
+        document.getElementById("int_yy").setAttribute("max",today.getFullYear());
+        document.getElementById("int_yy").setAttribute("min",today.getFullYear()-150);
+        //dayOfMonth에 0이나 말일 이상 입력 불가
+        function changeMaxDate(){
+            let yearValue = document.getElementById("int_yy").value;
+            let monthValue = document.getElementById("int_mm").value;
+            document.getElementById("int_dd").removeAttribute("max");
+            document.getElementById("int_dd").setAttribute("max",(new Date((new Date(yearValue,((monthValue == "12") ? 1 : monthValue),1))-1)).getDate());
+        }
+    </script>
 </body>
 
 </html>

@@ -2,18 +2,16 @@
 /*
     메인네비게이션 만들기
     id = "top-nav" 객체 안에 html 작성 및 생성됨
+
+    세션을 사용하려면 html 안에 아래 코드를 추가할것
+    <div id="ss_account" class="hidden" th:text="${session.account}"></div>
+    <div id="ss_admin" class="hidden" th:text="${session.admin}"></div>
  */
 //세션 저장 아이디
 let ss_account;
 //세션 관리자 판별
 let ss_admin;
-//세션 불러오기
-const session_tmp = document.createElement("div");
-session_tmp.innerHTML =
-'<div id="ss_account" class="hidden" th:text="${session.account}"></div>'
-+'<div id="ss_admin" class="hidden" th:text="${session.admin}"></div>';
-document.body.appendChild(session_tmp);
-//세션 값 대입하기
+//세션 값 대입하기 
 try {
     ss_account = document.getElementById("ss_account").innerHTML;
     ss_admin = document.getElementById("ss_admin").innerHTML;
@@ -54,8 +52,7 @@ function makeTopNav() {
     const nav = document.createElement("ul");
     nav.setAttribute("class", "topnav");
     nav.innerHTML =
-        `<li><a href='join'>회원가입</a></li>
-        <li><a href='news'>JM 소식</a></li>`;
+        `<li><a href='news'>JM 소식</a></li>`;
     if (ss_account != '') {
         nav.innerHTML += `<li><a href='logout'>로그아웃</a></li>`;
     };

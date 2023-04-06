@@ -10,7 +10,11 @@
 </head>
 <body>
     <div id="top-nav"></div>
-
+    
+    <!--session-->
+    <div id="ss_account" class="hidden" th:text="${session.account}"></div>
+    <div id="ss_admin" class="hidden" th:text="${session.admin}"></div>
+    <!--/session-->
     <script src="/js/mainUI.js"></script>
 </body>
 </html>

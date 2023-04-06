@@ -53,16 +53,15 @@ public class UserController {
     @PostMapping("login")
     public String login(LoginForm loginForm, HttpSession session) throws Exception {
         Optional<User> user = userService.login(loginForm);
-        if (user.isPresent()) {
-            // 로그인 성공
-            session.setAttribute("account", user.get().getAccount());
-            session.setAttribute("admin",user.get().getAdmin());
-            System.out.println("login success | account:"+session.getAttribute("account"));
-            return "redirect:/";
-        }else{
-            //로그인 실패
-            return "login";
+        // 로그인 실패
+        if (user == null) {
+            return "redirect:/loginfail";
         }
+        // 로그인 성공
+        session.setAttribute("account", user.get().getAccount());
+        session.setAttribute("admin", user.get().getAdmin());
+        System.out.println("login success | account:" + session.getAttribute("account"));
+        return "redirect:/";
     }
 
     @GetMapping("logout")
@@ -70,5 +69,9 @@ public class UserController {
         session.removeAttribute("account");
         session.removeAttribute("admin");
         return "redirect:/";
+    }
+    @GetMapping("loginfail")
+    public String loginFail(){
+        return "exception/loginfail";
     }
 }

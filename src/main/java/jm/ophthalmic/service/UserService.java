@@ -2,6 +2,7 @@ package jm.ophthalmic.service;
 
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import org.springframework.transaction.annotation.Transactional;
@@ -62,8 +63,13 @@ public class UserService {
     //로그인
     public Optional<User> login(LoginForm loginForm)throws Exception{
 
+        try{
         return Optional.ofNullable(userRepository.findbyAccount(loginForm.getAccount()))
         .filter(user -> user.get().getPassword().equals(loginForm.getPassword()))
         .orElse(null);
+        }catch(NoSuchElementException e){
+            System.out.println("로그인 아이디가 존재하지 않습니다.");
+            return null;
+        }
     }
 }
