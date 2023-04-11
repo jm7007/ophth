@@ -1,11 +1,22 @@
 "use strict"
 /*
+    사이드 페이지 만들기
+    id = "sidepage" 객체 안에 html 작성 및 생성됨
+    ----------!!!!주의!!!!-----------------------------
+    sidepage는 body 바로 밑에 위치해야하며 topnav 위에 있어야함
+    --------------------------------------------------
     메인네비게이션 만들기
     id = "top-nav" 객체 안에 html 작성 및 생성됨
 
     세션을 사용하려면 html 안에 아래 코드를 추가할것
     <div id="ss_account" class="hidden" th:text="${session.account}"></div>
     <div id="ss_admin" class="hidden" th:text="${session.admin}"></div>
+
+    footer 만들기
+    body 맨 아래 id = "footer" 객체 안에 작성 및 생성됨
+
+    맨위로 버튼 만들기
+
  */
 //세션 저장 아이디
 let ss_account;
@@ -51,25 +62,65 @@ function makeTopNav() {
     headArea.appendChild(navArea);
     const nav = document.createElement("ul");
     nav.setAttribute("class", "topnav");
-    nav.innerHTML =
-        `<li><a href='news'>JM 소식</a></li>`;
+    navArea.appendChild(nav);
+    //mainmenu - JM안과
+    const mainmenu1 = document.createElement("li");
+    const mainmenu1_a = document.createElement("a");
+    mainmenu1_a.setAttribute("href", "info");
+    mainmenu1_a.innerHTML = "JM 안과";
+    mainmenu1.appendChild(mainmenu1_a);
+    nav.appendChild(mainmenu1);
+    //mainmenu - 시력교정
+    const mainmenu2 = document.createElement("li");
+    mainmenu2.innerHTML = "시력교정";
+    const dropnav1 = document.createElement("ul"); //시력교정의 드랍다운메뉴
+    dropnav1.setAttribute("id", "dropnav1");
+    dropnav1.innerHTML =
+        `<li><a href='lasik'>스마일 라식</a></li>
+    <li><a href='implantable'>렌즈삽입수술</a></li>
+    <li><a href='dryeye'>안구건조증</a></li>`;
+    mainmenu2.appendChild(dropnav1);
+    nav.appendChild(mainmenu2);
+    //mainmenu - 노안*백내장
+    const mainmenu3 = document.createElement("li");
+    mainmenu3.innerHTML = "노안•백내장";
+    const dropnav2 = document.createElement("ul"); //시력교정의 드랍다운메뉴
+    dropnav2.setAttribute("id", "dropnav2");
+    dropnav2.innerHTML =
+        `<li><a href='oldeye'>노안</a></li>
+    <li><a href='cataract'>백내장</a></li>`;
+    mainmenu3.appendChild(dropnav2);
+    nav.appendChild(mainmenu3);
+    //mainmenu - 커뮤니티
+    const mainmenu4 = document.createElement("li");
+    mainmenu4.innerHTML = "커뮤니티";
+    const dropnav3 = document.createElement("ul"); //시력교정의 드랍다운메뉴
+    dropnav3.setAttribute("id", "dropnav3");
+    dropnav3.innerHTML =
+        `<li><a href='#'>시술 후기</a></li>
+    <li><a href='#'>병원 소식</a></li>`;
+    mainmenu4.appendChild(dropnav3);
+    nav.appendChild(mainmenu4);
+    //로그인창
+    //아이디 세션 공백 아니면 로그아웃창 띄우기
     if (ss_account != '') {
         nav.innerHTML += `<li><a href='logout'>로그아웃</a></li>`;
-    };
+    }
+    //관리자 세션 1이면 관리자 메뉴 띄우기
     if (ss_admin == 1) {
         nav.innerHTML += `<li><a href='admin'>관리자</a></li>`;
 
     }
-    navArea.appendChild(nav);
-    //로그인창
     const loginArea = document.createElement("div");
     loginArea.setAttribute("class", "col-2");
     headArea.appendChild(loginArea);
+    //로그인 세션 있음
     if (ss_account != '') {
         const logined = document.createElement("div");
         logined.setAttribute("class", "head-login");
         logined.innerHTML = ss_account;
         loginArea.appendChild(logined);
+        //로그인 세션 없음
     } else {
         console.log("account not ditected")
         const login = document.createElement("a");
@@ -92,4 +143,109 @@ function makeTopNav() {
     loginWindowClose.setAttribute("onclick", "loginWindowOnOff()");
     loginWindow.appendChild(loginWindowClose);
 }
-makeTopNav();
+try{
+    makeTopNav();
+}catch(e){}
+
+function footer(){
+    const footer = document.getElementById("footer");
+    const container_left = document.createElement("div");
+    const container_center = document.createElement("div");
+    const container_right = document.createElement("div");
+    container_left.setAttribute("class","col-3");
+    container_center.setAttribute("class","col-6");
+    container_right.setAttribute("class","col-3");
+    const footer_img = document.createElement("img");
+    footer_img.setAttribute("src","/images/002-w.png");
+    container_left.appendChild(footer_img);
+    container_center.innerHTML=
+    `<p>상호 : JM안과의원 &nbsp; &nbsp; | &nbsp; &nbsp; TEL : 02-444-4444<br>주소 : 서울시 동대문구 장안동 345-7 &nbsp; | &nbsp; 도로명주소 : 서울시 장한로 22길 13<br>
+    사업자등록번호 : 123-45-67890 (대표자: 이종민)<br>
+    reference : 비앤빛 강남밝은세상안과의원, 눈에미소안과</p>`;
+    container_right.innerHTML=
+    `<h2>대표번호</h2>
+    <h2>02-1234-5678</h2>`;
+    //footer append container
+    footer.appendChild(container_left);
+    footer.appendChild(container_center);
+    footer.appendChild(container_right);
+    
+}
+try{
+    footer();
+}catch(e){}
+
+function makeSidePage(){
+    const sidepage = document.getElementById("sidepage");
+    sidepage.innerHTML = `
+    <div id="side-page" class="col-8">
+        <div id="side-page-nav" class = "col-2 row-12">
+            <ul>
+                <img src="/images/ic_calendar.png" onclick="sidePageChange('rs')">
+                <li>온라인 예약</li>
+                <img src="/images/ic_support.png" onclick="sidePageChange('rs')">
+                <li>비용 상담</li>
+                <img src="/images/ic_kakao.png" onclick="sidePageChange('rs')">
+                <li>카톡상담</li>
+                <img src="/images/ic_footprint.png" onclick="sidePageChange('location')">
+                <li>오시는길</li>
+                <li style="margin-top:20px;border-top:0.5px solid white; border-bottom: 0.5px solid white;font-size:12px">010-3393-4738</li>
+            </ul>
+        </div>
+        <div id="side-page-content" class = "col-10">
+            <img class="ic_close" src="/images/ic_close.png" onclick="sidePageDisplay()">
+            <div id="side-wrapper" class="col-10">
+                <div id="side-title" class="row"></div>
+                <iframe id="side-iframe" src="rs" class="col-12 row-10 iframe-container" frameborder="0"></iframe>
+            </div>
+        </div>
+    </div>
+    <div id=top-nav></div>
+
+
+    <!--side nav-->
+    <nav class="quicknav">
+        <ul>
+            <img src="/images/ic_calendar.png" onclick="sidePageDisplay(),sidePageChange('rs')">
+            <li>온라인 예약</li>
+            <img src="/images/ic_support.png" onclick="sidePageDisplay(),sidePageChange('rs')">
+            <li>비용 상담</li>
+            <img src="/images/ic_kakao.png" onclick="sidePageDisplay(),sidePageChange('rs')">
+            <li>카톡상담</li>
+            <img src="/images/ic_footprint.png" onclick="sidePageDisplay(),sidePageChange('location')">
+            <li>오시는길</li>
+        </ul>
+    </nav>`
+}
+try{
+makeSidePage();
+}catch(e){}
+
+const sidePageDisplay = (function () {
+    const sidePageClassList = document.getElementById("side-page").classList;
+    let onOff = 0;
+    return function () {
+        if (onOff == 0) {
+            sidePageClassList.remove("side-page-slide-aniOff");
+            sidePageClassList.add("side-page-slide-ani");
+            onOff = 1;
+        } else {
+            sidePageClassList.remove("side-page-slide-ani");
+            sidePageClassList.add("side-page-slide-aniOff");
+            onOff = 0;
+        }
+    }
+})();
+const sidePageChange = ((page) => {
+    switch (page) {
+        case 'rs':
+            document.getElementById("side-title").innerHTML = "온라인 예약";
+            break;
+        case 'location':
+            document.getElementById("side-title").innerHTML = "오시는 길";
+            break;
+        default:
+            document.getElementById("side-title").innerHTML = "side-title";
+    };
+    document.getElementById("side-iframe").setAttribute("src", page);
+});

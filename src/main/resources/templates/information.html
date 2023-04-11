@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <title>JM안과</title>
+    <link th:href="@{/css/main.css}" rel="stylesheet" />
+    <style>
+        .picture {
+            width: 100%;
+            height: auto;
+            max-width: 400px;
+        }
+    </style>
+</head>
+
+<body class="background-img-9">
+    <div id="top-nav"></div>
+    <div class="body">
+        <div class="wrapper">
+            <div class="row">
+                <h1 class="title">병원 소개</h1>
+            </div>
+            <div class="row">
+                <div class="col-5" style="margin:auto;">
+                    <div style="width:80%;">
+                        <img class="picture" src="/images/008.jpeg">
+                    </div>
+                </div>
+                <div class="col-7" style="padding:10px 50px 0 0; flex-direction: column;">
+                    <h2 style="color:dodgerblue;">안녕하세요!</h2>
+                    <h2>고객님을 향한 사랑으로 언제나 행복이 가득한
+                        JM안과입니다.</h2>
+                    <p>
+                        항상 끊임없는 연구와 새로운 의료서비스를 도입하여 높은 수준의 의료서비스를 보급하고 더 많은 사람들이 더 나은 삶을 살아 갈 수 있도록 앞장서는 것을 사명으로
+                        생각하며
+                        JM안과를 성장시켜왔습니다.
+                        <br><br>
+                        수술은 ‘뛰어난 학문적 이론으로 무장된 명철한 머리’와 ‘정확히 판독할 수 있는 눈’ 그리고 이를 ‘가장 안전하며 좋은 결과가 나올 수 있도록 수술로 연결시킬 수
+                        있는 손’
+                        이
+                        수술에서 가장 중요하다는 기존의 수술 철학에 환자 한 분, 한 분의 시력을 평생 책임져야 하는 의사로서 환자분들의 살아온 삶을 존중하며 또한 앞으로 살아가실 삶을
+                        위하여
+                        항상
+                        마지막 수술이라는 마음으로 최선을 다해야 한다는 철학을 가지고 있습니다.
+                        <br><br><span style="color:dodgerblue;font-family:fantasy;font-size: 18px;">
+                            이러한 철학을 바탕으로 시력교정수술 전문안과인 JM안과를 2002년 개원하여 20년간 고객 한 분, 한 분께 최선을 다해 진료와 수술을 하고 있습니다.
+                            <br><br></span>
+                        저희를 신뢰해 주시고 아껴주신 고객님께 다시 한 번 깊은 감사를 드리며 앞으로도 탁월한 결과와 고객 존중, 고객의 가치 우선이라는 JM안과 수술철학을 바탕으로 언제나
+                        고객에게
+                        행복한 미소를 드리도록 최선을 다하겠습니다.
+                        <br><br>
+                        항상 끊임없는 연구와 새로운 의료서비스를 도입하여 높은 수준의 의료서비스를 보급하고 더 많은 사람들이 더 나은 삶을 살아갈 수 있도록 앞장서는 것을 사명으로 생각하며
+                        JM안과를
+                        성장시켜 왔습니다.
+                        <br><br>
+                        JM안과의 중심비전은 성장에만 치중하는 것이 아니라 나눔을 실천하고 사회에 기여하는 기업이 되는 것이고 의료계의 새로운 모델이 되어 의료계를 이끌어나가며, 지금까지
+                        없었던
+                        새로운 역사를 쓰는 JM안과로 거듭날 것입니다.
+                        <br><br>
+                        감사합니다.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div id="footer"></div>
+    </div>
+    <!--session-->
+    <div id="ss_account" class="hidden" th:text="${session.account}"></div>
+    <div id="ss_admin" class="hidden" th:text="${session.admin}"></div>
+    <!--/session-->
+    <script type="text/javascript" th:src="@{/js/mainUI.js}"></script>
+</body>
+
+</html>

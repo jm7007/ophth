@@ -8,10 +8,13 @@
     <title>JM안과</title>
     <link th:href="@{/css/main.css}" rel="stylesheet" />
 </head>
+
 <body>
     <div id="top-nav"></div>
-    <div class="wrapper">
-
+    <div class="body">
+        <div class="wrapper">
+        </div>
+        <div id="footer"></div>
     </div>
     <!--session-->
     <div id="ss_account" class="hidden" th:text="${session.account}"></div>
@@ -19,4 +22,5 @@
     <!--/session-->
     <script type="text/javascript" th:src="@{/js/mainUI.js}"></script>
 </body>
+
 </html>

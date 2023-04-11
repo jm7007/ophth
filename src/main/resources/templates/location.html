@@ -7,17 +7,49 @@
     <meta http-equiv="Cache-Control" content="no-cache" />
     <title>JM안과</title>
     <link th:href="@{/css/main.css}" rel="stylesheet" />
+    <style>
+        h1{
+            font-size:25px;
+        }
+        h2{
+            font-size:20px;
+        }
+        h2 span{
+            color:darkviolet;
+            margin:0 5px;
+            font-size:20px;
+        }
+        span.green{
+            color:forestgreen;
+        }
+        p{
+            font-size: 18px;
+            font-family: sans-serif;
+
+        }
+        
+        ul{
+            padding: inherit;
+            margin:0;
+        }
+    </style>
 </head>
 
 <body>
     <div class="wrapper">
+        <h2><span>지하철 5호선 장한평역</span> 3번출구의  <span class="green";>  2416, 2233, 2112</span> 번 등의 버스를 타고 오시면 편하게 오실 수 있습니다.</h2>
         <div class="row" style="height:350px; width:100%;">
-            <div class="col-5">
-                <h1 style="font-size:20px">서울 동대문구 장한로22길 13 썬앤빌 시그니처 오피스텔</h1>
+            <div class="col-6" style="flex-direction: column;">
+                <h1>서울 동대문구 장한로22길 13 썬앤빌 시그니처 오피스텔</h1>
                 <p> 지번 | 서울 동대문구 장안동 345-7</p>
-                <h1 style="font-size:20px">서울 동대문구 장한로22길 13 썬앤빌 시그니처 오피스텔</h1>
+                <h1>주차안내</h1>
+                <ul>
+                    <li><p>건물 뒷편 기계식 주차장 이용 바랍니다.</p></li>
+                    <li><p>병원 건물내 주차는 유료주차입니다.</p></li>
+                    <li><p>주차 비용 1시간 3천원</p></li>
+                </ul>
             </div>
-            <div class="col-7">
+            <div class="col-6">
                 <div id="map" style="width:100%;"></div>
             </div>
         </div>
@@ -27,14 +59,19 @@
     <script type="text/javascript"
         src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=mjlypixeky"></script>
     <script>
-        var map = new naver.maps.Map('map', {
-            center: new naver.maps.LatLng(37.56961, 127.07113), // 잠실 롯데월드를 중심으로 하는 지도
-            zoom: 18
+        let map = new naver.maps.Map('map', {
+            center: new naver.maps.LatLng(37.56621, 127.06713), // 잠실 롯데월드를 중심으로 하는 지도
+            zoom: 14
         });
-        var marker = new naver.maps.Marker({
+        let marker = new naver.maps.Marker({
             position: new naver.maps.LatLng(37.56961, 127.07113),
             map: map
         });
+        let contentString = `<h3 style="padding:5px 20px;">JM안과</h3>`;
+        let infowindow = new naver.maps.InfoWindow({
+            content: contentString
+        });
+        infowindow.open(map,marker);
 
     </script>
 </body>

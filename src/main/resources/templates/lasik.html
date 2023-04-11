@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <title>JM안과</title>
+    <link th:href="@{/css/main.css}" rel="stylesheet" />
+    <style>
+        .picture {
+            width: 100%;
+            margin: 20px;
+            height: auto;
+        }
+    </style>
+</head>
+
+<body class="background-img-9">
+    <div id="sidepage"></div>
+    <div id="top-nav"></div>
+    <div class="body">
+        <div class="wrapper" style="width:80%; margin:0 auto;">
+            <div class="row">
+                <h1 class="title">스마일 라식</h1>
+            </div>
+            <img src="/images/lasik/lasik-1.png">
+            <img src="/images/lasik/lasik-2.png">
+            <img src="/images/lasik/lasik-3.png">
+            <img src="/images/lasik/lasik-4.png">
+            <img src="/images/lasik/lasik-5.png">
+            <img src="/images/lasik/lasik-6.png">
+
+        </div>
+        <div id="footer"></div>
+    </div>
+    <!--session-->
+    <div id="ss_account" class="hidden" th:text="${session.account}"></div>
+    <div id="ss_admin" class="hidden" th:text="${session.admin}"></div>
+    <!--/session-->
+    <script type="text/javascript" th:src="@{/js/mainUI.js}"></script>
+</body>
+
+</html>

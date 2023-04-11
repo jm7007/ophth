@@ -7,66 +7,22 @@
     <meta http-equiv="Cache-Control" content="no-cache" />
     <title>JM안과</title>
     <link th:href="@{/css/main.css}" rel="stylesheet"/>
-    <link th:href="@{/css/sidepage.css}" rel="stylesheet"/>
 </head>
 
 <body class="background-img-5">
-    <div id="side-page" class="col-8">
-        <div id="side-page-nav" class = "col-2 row-12">
-            <ul>
-                <img src="/images/ic_calendar.png" onclick="sidePageChange('rs')">
-                <li>온라인 예약</li>
-                <img src="/images/ic_support.png" onclick="sidePageChange('rs')">
-                <li>비용 상담</li>
-                <img src="/images/ic_kakao.png" onclick="sidePageChange('rs')">
-                <li>카톡상담</li>
-                <img src="/images/ic_footprint.png" onclick="sidePageChange('location')">
-                <li>오시는길</li>
-                <li style="margin-top:20px;border-top:0.5px solid white; border-bottom: 0.5px solid white;font-size:12px">010-3393-4738</li>
-            </ul>
-        </div>
-        <div id="side-page-content" class = "col-10">
-            <img class="ic_close" src="/images/ic_close.png" onclick="sidePageDisplay()">
-            <div id="side-wrapper" class="col-10">
-                <div id="side-title" class="row"></div>
-                <iframe id="side-iframe" src="rs" class="col-12 row-10 iframe-container" frameborder="0"></iframe>
-            </div>
-        </div>
-    </div>
-    <div id=top-nav></div>
-
-
-    <!--side nav-->
-    <nav class="quicknav">
-        <ul>
-            <img src="/images/ic_calendar.png" onclick="sidePageDisplay(),sidePageChange('rs')">
-            <li>온라인 예약</li>
-            <img src="/images/ic_support.png" onclick="sidePageDisplay(),sidePageChange('rs')">
-            <li>비용 상담</li>
-            <img src="/images/ic_kakao.png" onclick="sidePageDisplay(),sidePageChange('rs')">
-            <li>카톡상담</li>
-            <img src="/images/ic_footprint.png" onclick="sidePageDisplay(),sidePageChange('location')">
-            <li>오시는길</li>
-        </ul>
-    </nav>
-    <!-- /side nav-->
-    <!-- side page-->
-    
-    <!-- /side page-->
+    <div id="sidepage"></div>
+    <div id="top-nav"></div>
     <div id="home">
         <div class="mainTextBox">
             예방으로부터 시작되는 건강한 눈, 인생을 선물하다
         </div>
-        <button class = button2>JM안과 자세히 알아보기</button>
-
+        <button class = button2><a href="info">JM안과 소개</a></button>
     </div>
-    <!--homepage end-->
     <!--session-->
     <div id="ss_account" class="hidden" th:text="${session.account}"></div>
     <div id="ss_admin" class="hidden" th:text="${session.admin}"></div>
     <!--/session-->
-    <script src="/js/mainUI.js"></script>
-    <script src="/js/index.js"></script>
+    <script type="text/javascript" th:src="@{/js/mainUI.js}"></script>
 </body>
 
 </html>
