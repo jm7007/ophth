@@ -1,8 +1,6 @@
 package jm.ophthalmic.repository;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.transaction.annotation.Transactional;
@@ -13,10 +11,9 @@ import jm.ophthalmic.domain.User;
 
 @Transactional
 public class JpaUserRepository implements UserRepository {
-    
+
     private final EntityManager em;
 
-    
     public JpaUserRepository(EntityManager em) {
         this.em = em;
     }
@@ -39,6 +36,7 @@ public class JpaUserRepository implements UserRepository {
                 .setParameter("account", account)
                 .getResultList().stream().findAny();
     }
+
     @Override
     public Optional<User> findbyEmail(String email) {
         return em.createQuery("select u from User u where u.email = :email", User.class)
@@ -48,39 +46,34 @@ public class JpaUserRepository implements UserRepository {
 
     @Override
     public List<User> findAll() {
-        return em.createQuery("select u from User u",User.class)
-            .getResultList();
+        return em.createQuery("select u from User u", User.class)
+                .getResultList();
     }
 
     @Override
-    public Optional<User> deletebyId(Long id) {
-        User user = em.find(User.class, id);
+    public Optional<User> delete(Long id) {
+        Optional<User> user = findbyId(id);
         em.remove(user);
-        return Optional.ofNullable(user);
+        return user;
     }
 
     @Override
-    public Optional<User> modifyUser(Long id, Map<String,Object> updates) {
-        String sql = "UPDATE User u SET ";
-        List<String> updateClauses = new ArrayList<>();
-        for(String column : updates.keySet()){
-            updateClauses.add("u."+column + " = :" + column);
-        }
-        sql += String.join(", ",updateClauses);
-        sql += " WHERE u.id = :id";
-
+    public Optional<User> modifyUser(Long id, User newUser) {
+        String sql = "UPDATE User u SET u.password = :password"
+                + ", u.name = :name, u.contact = :contact, u.email = :email"
+                + ", u.gender = :gender, u.birth = :birth WHERE u.id= :id";
         Query query = em.createQuery(sql);
-
-        for(String column : updates.keySet()){
-            query.setParameter(column, updates.get(column));
-        }
-        query.setParameter("id",id);
+        query.setParameter("password", newUser.getPassword());
+        query.setParameter("name", newUser.getName());
+        query.setParameter("contact", newUser.getContact());
+        query.setParameter("email", newUser.getEmail());
+        query.setParameter("gender", newUser.getGender());
+        query.setParameter("birth", newUser.getBirth());
+        query.setParameter("id", id);
         int result = query.executeUpdate();
-        if(result != 1){
-            throw new RuntimeException("modify user is failed with id = "+id);
+        if (result != 1) {
+            throw new RuntimeException("modify user is failed with id = " + id);
         }
-        //1차 캐시에 들어있는 값을 참조하지 못하게 하기 위해 clear()메소드를 사용하여 실제 값을 불러오게 한다.
-        em.clear();
         User updatedUser = em.find(User.class,id);
         System.out.println(updatedUser);
         return Optional.ofNullable(updatedUser);

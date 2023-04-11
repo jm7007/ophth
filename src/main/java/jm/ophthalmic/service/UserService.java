@@ -1,13 +1,13 @@
 package jm.ophthalmic.service;
 
 import java.util.List;
-import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import org.springframework.transaction.annotation.Transactional;
 
 import jm.ophthalmic.controller.form.LoginForm;
+import jm.ophthalmic.controller.form.UserForm;
 import jm.ophthalmic.domain.User;
 import jm.ophthalmic.repository.UserRepository;
 
@@ -54,10 +54,10 @@ public class UserService {
         return userRepository.findbyEmail(email);
     }
     public Optional<User> deleteUser(Long id){
-        return userRepository.deletebyId(id);
+        return userRepository.delete(id);
     }
-    public Optional<User> modifyUser(Long id, Map<String,Object> updateClauses){
-        return userRepository.modifyUser(id, updateClauses);
+    public Optional<User> modifyUser(Long id, User newUser){
+        return userRepository.modifyUser(id, newUser);
     }
 
     //로그인
@@ -71,5 +71,29 @@ public class UserService {
             System.out.println("로그인 아이디가 존재하지 않습니다.");
             return null;
         }
+    }
+    public User convertForm(UserForm userForm){
+        User user = new User();
+        user.setAccount(userForm.getAccount());
+        user.setPassword(userForm.getPassword());
+        user.setEmail(userForm.getEmail());
+        user.setName(userForm.getName());
+        user.setContact(userForm.getContact());
+        user.setGender(userForm.getGender());
+        user.setEmail(userForm.getEmail());
+        user.setBirth(userForm.getBirth());
+        return user;
+    }
+    public UserForm convertForm(User user){
+        UserForm userForm = new UserForm();
+        userForm.setInt_id(user.getAccount());
+        userForm.setInt_name(user.getName());
+        userForm.setInt_contact(user.getContact());
+        userForm.setInt_yy(String.valueOf(user.getBirth().getYear()));
+        userForm.setInt_mm(String.valueOf(user.getBirth().getMonth().getValue()));
+        userForm.setInt_dd(String.valueOf(user.getBirth().getDayOfMonth()));
+        userForm.setInt_email(user.getEmail());
+        userForm.setInt_gender(user.getGender());
+        return userForm;
     }
 }

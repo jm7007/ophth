@@ -6,6 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import jakarta.servlet.http.HttpSession;
 import jm.ophthalmic.controller.form.LoginForm;
@@ -28,26 +30,26 @@ public class UserController {
     }
 
     @PostMapping("join/new")
-    public String createAccount(UserForm userForm) {
-        System.out.println(userForm);
-        User user = new User();
-        user.setAccount(userForm.getAccount());
-        user.setPassword(userForm.getPassword());
-        user.setEmail(userForm.getEmail());
-        user.setName(userForm.getName());
-        user.setContact(userForm.getContact());
-        user.setGender(userForm.getGender());
-        user.setEmail(userForm.getEmail());
-        user.setBirth(userForm.getBirth());
-        System.out.println(user);
-        userService.join(user);
-        System.out.printf("new user = id: %d | name: %s", user.getId(), user.getName());
+    public String createAccount(UserForm userForm,HttpSession session) {
+        try{
+        userService.join(userService.convertForm(userForm));
         return "redirect:/";
+        }catch(IllegalStateException e){
+            session.setAttribute("msg", e.getMessage());
+            return "redirect:/joinfail";
+        }
     }
-
+    @GetMapping("joinfail")
+    @ResponseBody
+    public String joinfail(HttpSession session){
+        String msg = String.valueOf(session.getAttribute("msg"));
+        String body = "<div id='msg'>${msg}</div><script> alert('"+msg+"'); history.go(-1)</script>";
+        session.removeAttribute("msg");
+        return body;
+    }
     @GetMapping("login")
     public String loginForm() {
-        return "login";
+        return "/login";
     }
 
     @PostMapping("login")
@@ -58,20 +60,32 @@ public class UserController {
             return "redirect:/loginfail";
         }
         // 로그인 성공
-        session.setAttribute("account", user.get().getAccount());
+        session.setAttribute("id", user.get().getId());
+        session.setAttribute("name",user.get().getName());
         session.setAttribute("admin", user.get().getAdmin());
-        System.out.println("login success | account:" + session.getAttribute("account"));
         return "redirect:/";
     }
 
     @GetMapping("logout")
     public String logout(HttpSession session) {
-        session.removeAttribute("account");
+        session.removeAttribute("id");
+        session.removeAttribute("name");
         session.removeAttribute("admin");
         return "redirect:/";
     }
     @GetMapping("loginfail")
     public String loginFail(){
         return "exception/loginfail";
+    }
+    @GetMapping("modifyuser")
+    public String modifyuser(Model model,HttpSession session){
+        User user = userService.findOnebyId((long)session.getAttribute("id")).get();
+        model.addAttribute("user",userService.convertForm(user));
+        return "modifyuser";
+    }
+    @PostMapping("modifyuser/new")
+    public String modifyuserPost(UserForm userForm,@SessionAttribute("id") Long id){
+        userService.modifyUser(id, userService.convertForm(userForm));
+        return "redirect:/";
     }
 }

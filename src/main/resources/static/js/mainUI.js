@@ -19,15 +19,19 @@
 
  */
 //세션 저장 아이디
-let ss_account;
+let ss_id;
+//세션 저장 이름
+let ss_name;
 //세션 관리자 판별
 let ss_admin;
 //세션 값 대입하기 
 try {
-    ss_account = document.getElementById("ss_account").innerHTML;
+    ss_id = document.getElementById("ss_id").innerHTML;
+    ss_name = document.getElementById("ss_name").innerHTML;
     ss_admin = document.getElementById("ss_admin").innerHTML;
 } catch (e) {
-    ss_account = '';
+    ss_id = '';
+    ss_name = '';
     ss_admin = '';
     console.log("no login info");
 }
@@ -103,7 +107,7 @@ function makeTopNav() {
     nav.appendChild(mainmenu4);
     //로그인창
     //아이디 세션 공백 아니면 로그아웃창 띄우기
-    if (ss_account != '') {
+    if (ss_id != '') {
         nav.innerHTML += `<li><a href='logout'>로그아웃</a></li>`;
     }
     //관리자 세션 1이면 관리자 메뉴 띄우기
@@ -115,11 +119,19 @@ function makeTopNav() {
     loginArea.setAttribute("class", "col-2");
     headArea.appendChild(loginArea);
     //로그인 세션 있음
-    if (ss_account != '') {
+    if (ss_id != '') {
         const logined = document.createElement("div");
         logined.setAttribute("class", "head-login");
-        logined.innerHTML = ss_account;
+        logined.innerHTML = ss_name;
         loginArea.appendChild(logined);
+        //로그인시 보조메뉴 만들기
+        const loginFunction = document.createElement("ul"); //보조메뉴 리스트를 담을 ul
+        // loginFunction.setAttribute("class","hidden");
+        loginFunction.innerHTML =
+        `<li><a href='#'>회원 정보</a></li>
+        <li><a href='modifyuser'>회원 수정</a></li>
+        <li><a href='logout'>로그 아웃</a></li>`
+        logined.appendChild(loginFunction);
         //로그인 세션 없음
     } else {
         console.log("account not ditected")
@@ -129,19 +141,6 @@ function makeTopNav() {
         login.innerHTML = "로그인";
         loginArea.appendChild(login);
     }
-    //로그인창
-    const loginWindow = document.createElement("div");
-    loginWindow.setAttribute("class", "window-login");
-    loginWindow.setAttribute("class", "hidden");
-    loginWindow.setAttribute("onclick", "loginWindowOnOff()");
-    loginWindow.innerHTML = "아이디:<br>비밀번호:";
-    loginArea.appendChild(loginWindow);
-
-    const loginWindowClose = document.createElement("img");
-    loginWindowClose.setAttribute("class", "ic_close");
-    loginWindowClose.setAttribute("src", "/images/ic_close.png");
-    loginWindowClose.setAttribute("onclick", "loginWindowOnOff()");
-    loginWindow.appendChild(loginWindowClose);
 }
 try{
     makeTopNav();
@@ -235,7 +234,10 @@ const sidePageDisplay = (function () {
             onOff = 0;
         }
     }
-})();
+})
+try{
+sidePageDisplay();
+}catch(e){}
 const sidePageChange = ((page) => {
     switch (page) {
         case 'rs':

@@ -68,7 +68,11 @@
     </div>
     <div>
     <button class="button1" onclick="submitRS()" style="width:50%;position: relative;left:25%">예약</button>
-    
+    <!--session-->
+    <div id="ss_id" class="hidden" th:text="${session.id}"></div>
+    <div id="ss_name" class="hidden" th:text="${session.name}"></div>
+    <div id="ss_admin" class="hidden" th:text="${session.admin}"></div>
+    <!--/session-->
     <script th:inline="javascript">
         const reservations = /*[[${reservations}]]*/ "reservations";
     </script>

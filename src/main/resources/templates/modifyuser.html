@@ -8,48 +8,51 @@
     <title>JM안과</title>
     <link th:href="@{/css/main.css}" rel="stylesheet" />
     <link th:href="@{/css/join.css}" rel="stylesheet" />
+    <style>
+        .disabled{
+            background-color:rgba(0,0,0,0.2);
+        }
+    </style>
 </head>
 
 <body class="background-img-9">
 
     <div id=top-nav></div>
 
-    <h1 style="text-align: center;font-size:25px; margin:50px 0 0 0;">회원가입</h1>
+    <h1 style="text-align: center;font-size:25px; margin:50px 0 0 0;">회원 정보 수정</h1>
     <div class="row">
         <div id="makeAcount">
-            <form action="/join/new" method="post">
+            <form action="/modifyuser/new" method="post">
                 <div class="join_row">
                     <h3 class="join_title"><label for="int_id">아이디</label></h3>
-                    <span class="ps_box">
-                        <input type="text" class="int_box" name="int_id" id="int_id" maxlength="20" required>
+                    <span class="ps_box disabled">
+                        <input type="text" class="int_box" name="int_id" id="int_id" maxlength="20" th:value="${user.int_id}" disabled>
                     </span>
                     <span class="error_next_box" id="idMsg"></span>
                 </div>
                 <div class="join_row">
-                    <h3 class="join_title"><label for="int_pw1">패스워드</label></h3>
+                    <h3 class="join_title"><label for="int_pw1">패스워드 변경</label><span style="padding-left:30px;font-size:10px;color:gray;">공백일 경우 기존 패스워드가 유지됩니다.</span></h3>
                     <span class="ps_box">
-                        <input type="password" class="int_box" name="int_pw1" id="int_pw1" maxlength="20" required
-                        onkeydown="passwordcheck()">
+                        <input type="password" class="int_box" name="int_pw1" id="int_pw1" maxlength="20">
                     </span>
                     <span class="error_next_box" id="idMsg"></span>
-                    <h3 class="join_title"><label for="int_pw2">패스워드 재확인</label></h3>
+                    <h3 class="join_title"><label for="int_pw2">패스워드 변경 재확인</label></h3>
                     <span class="ps_box">
-                        <input type="password" class="int_box" name="int_pw2" id="int_pw2" maxlength="20" required
-                        title="입력한 비밀번호가 일치하지 않습니다.">
+                        <input type="password" class="int_box" name="int_pw2" id="int_pw2" maxlength="20">
                     </span>
                     <span class="error_next_box" id="idMsg"></span>
                 </div>
                 <div class="join_row">
                     <h3 class="join_title"><label for="int_name">이름</label></h3>
                     <span class="ps_box">
-                        <input type="text" class="int_box" name="int_name" id="int_name" maxlength="20" required>
+                        <input type="text" class="int_box" name="int_name" id="int_name" maxlength="20" th:value="${user.name}">
                     </span>
                 </div>
                 <div class="join_row">
                     <h3 class="join_title"><label for="int_email">메일</label></h3>
                     <span class="ps_box">
                         <input type="email" class="int_box" placeholder="abcd @ ... " name="int_email" id="int_email"
-                            maxlength="40">
+                            maxlength="40" th:value="${user.email}">
                     </span>
                 </div>
                 <div class="join_row">
@@ -58,31 +61,31 @@
                         <div class="bir_yy">
                             <span class="ps_box">
                                 <input type="number" id="int_yy" name="int_yy" placeholder="Year(4자리)" class="int_box"
-                                    maxlength="4" onfocusout="changeMaxDate()">
+                                    maxlength="4" onfocusout="changeMaxDate()" th:value="${user.int_yy}">
                             </span>
                         </div>
                         <div class="bir_mm">
                             <span class="ps_box">
                                 <select id="int_mm" class="sel" name="int_mm" onchange="changeMaxDate()">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
-                                    <option value="11">11</option>
-                                    <option value="12">12</option>
+                                    <option th:value="1" th:selected="${user.int_mm == '1'}">1</option>
+                                    <option th:value="2" th:selected="${user.int_mm == '2'}">2</option>
+                                    <option th:value="3" th:selected="${user.int_mm == '3'}">3</option>
+                                    <option th:value="4" th:selected="${user.int_mm == '4'}">4</option>
+                                    <option th:value="5" th:selected="${user.int_mm == '5'}">5</option>
+                                    <option th:value="6" th:selected="${user.int_mm == '6'}">6</option>
+                                    <option th:value="7" th:selected="${user.int_mm == '7'}">7</option>
+                                    <option th:value="8" th:selected="${user.int_mm == '8'}">8</option>
+                                    <option th:value="9" th:selected="${user.int_mm == '9'}">9</option>
+                                    <option th:value="10" th:selected="${user.int_mm == '10'}">10</option>
+                                    <option th:value="11" th:selected="${user.int_mm == '11'}">11</option>
+                                    <option th:value="12" th:selected="${user.int_mm == '12'}">12</option>
                                 </select>
                             </span>
                         </div>
                         <div class="bir_dd">
                             <span class="ps_box">
                                 <input type="number" id="int_dd" name="int_dd" placeholder="Day" class="int_box"
-                                    maxlength="2" min="1" max="31">
+                                    maxlength="2" min="1" max="31" th:value="${user.int_dd}">
                             </span>
                         </div>
                     </div>
@@ -91,9 +94,9 @@
                     <h3 class="join_title"><label for="int_gender">성별</label></h3>
                     <span class="ps_box">
                         <select type="text" class="sel" name="int_gender" id="int_gender">
-                            <option value="M">남자</option>
-                            <option value="W">여자</option>
-                            <option value="N">선택안함</option>
+                            <option th:value="M" th:selected="${user.int_gender=='M'}">남자</option>
+                            <option th:value="W" th:selected="${user.int_gender=='W'}">여자</option>
+                            <option th:value="N" th:selected="${user.int_gender=='N'}">선택안함</option>
                         </select>
                     </span>
                 </div>
@@ -101,11 +104,11 @@
                     <h3 class="join_title"><label for="int_contact">연락처</label></h3>
                     <span class="ps_box">
                         <input type="tel" class="int_box" placeholder="-를 제외하고 입력하세요" name="int_contact"
-                            id="int_contact" maxlength="20" pattern="0[0-9]{1,2}[0-9]{7,8}">
+                            id="int_contact" maxlength="20" pattern="0[0-9]{1,2}[0-9]{7,8}" th:value="${user.contact}">
                     </span>
                 </div>
                 <button type="submit" id="btnJoin" class="button1">
-                    가입하기
+                    수정하기
                 </button>
             </form>
         </div>
@@ -129,10 +132,7 @@
             document.getElementById("int_dd").removeAttribute("max");
             document.getElementById("int_dd").setAttribute("max",(new Date((new Date(yearValue,((monthValue == "12") ? 1 : monthValue),1))-1)).getDate());
         }
-        //비밀번호 재입력 확인
-        function passwordcheck(){
-            document.getElementById("int_pw2").pattern = document.getElementById("int_pw1").value;
-        }
+        //공백일 경우 기존값 대입하기
     </script>
 </body>
 
