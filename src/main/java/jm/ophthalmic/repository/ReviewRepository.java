@@ -12,5 +12,5 @@ public interface ReviewRepository {
     List<Review> findbyUserId(Long user_id);
     List<Review> findAll();
     Long delete(Long review_id);
-    Optional<Review> modify(Review review, Review updates); 
+    Optional<Review> modify(Review review, Review updates);
 }

@@ -101,15 +101,11 @@ function makeTopNav() {
     const dropnav3 = document.createElement("ul"); //시력교정의 드랍다운메뉴
     dropnav3.setAttribute("id", "dropnav3");
     dropnav3.innerHTML =
-        `<li><a href='#'>시술 후기</a></li>
-    <li><a href='#'>병원 소식</a></li>`;
+    `<li><a href='community/news'>병원 소식</a></li>
+        <li><a href='community/review'>시술 후기</a></li>`;
     mainmenu4.appendChild(dropnav3);
     nav.appendChild(mainmenu4);
     //로그인창
-    //아이디 세션 공백 아니면 로그아웃창 띄우기
-    if (ss_id != '') {
-        nav.innerHTML += `<li><a href='logout'>로그아웃</a></li>`;
-    }
     //관리자 세션 1이면 관리자 메뉴 띄우기
     if (ss_admin == 1) {
         nav.innerHTML += `<li><a href='admin'>관리자</a></li>`;

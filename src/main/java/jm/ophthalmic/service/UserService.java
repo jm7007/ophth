@@ -13,7 +13,6 @@ import jm.ophthalmic.repository.UserRepository;
 
 @Transactional
 public class UserService {
-    
 
     private final UserRepository userRepository;
 
