@@ -7,8 +7,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import jakarta.servlet.http.HttpSession;
+import jm.ophthalmic.domain.Inquiry;
 import jm.ophthalmic.domain.Reservation;
 import jm.ophthalmic.domain.User;
+import jm.ophthalmic.service.InquiryService;
 import jm.ophthalmic.service.ReservationService;
 import jm.ophthalmic.service.UserService;
 
@@ -17,10 +19,13 @@ public class AdminController {
 
     private final UserService userService;
     private final ReservationService reservationService;
+    private final InquiryService inquiryService;
     
-    public AdminController(UserService userService, ReservationService reservationService) {
+    public AdminController(UserService userService, ReservationService reservationService,
+            InquiryService inquiryService) {
         this.userService = userService;
         this.reservationService = reservationService;
+        this.inquiryService = inquiryService;
     }
 
     @GetMapping("admin")
@@ -32,6 +37,8 @@ public class AdminController {
         model.addAttribute("users", users);
         List<Reservation> reservations = reservationService.findReservations();
         model.addAttribute("reservations", reservations);
+        List<Inquiry> inquiries = inquiryService.findInquiries();
+        model.addAttribute("inquiries", inquiries);
         return "admin";
     }
 }

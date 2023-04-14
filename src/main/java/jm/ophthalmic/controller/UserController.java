@@ -53,7 +53,7 @@ public class UserController {
     }
 
     @PostMapping("login")
-    public String login(LoginForm loginForm, HttpSession session) throws Exception {
+    public String login(LoginForm loginForm, HttpSession session, Model model) throws Exception {
         Optional<User> user = userService.login(loginForm);
         // 로그인 실패
         if (user == null) {
@@ -63,6 +63,11 @@ public class UserController {
         session.setAttribute("id", user.get().getId());
         session.setAttribute("name",user.get().getName());
         session.setAttribute("admin", user.get().getAdmin());
+        if(model.getAttribute("id_save") == null){
+            session.setAttribute("id_save","0");
+        }else{
+            session.setAttribute("id_save",user.get().getAccount());
+        }
         return "redirect:/";
     }
 

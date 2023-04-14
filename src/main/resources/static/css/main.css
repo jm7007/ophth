@@ -28,6 +28,8 @@ img{
 }
 .body{
     width:100%;
+    display:flex;
+    flex-direction: column;
 }
 .col-1 {
     width: 8.33%;
@@ -147,6 +149,7 @@ img{
     padding: 0;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 .row {
     display: flex;
@@ -262,10 +265,6 @@ ul.topnav {
 
 }
 
-a:visited {
-    color:inherit;
-}
-
 .topnav>li:hover  {
     color: dodgerblue;
     cursor: pointer;
@@ -327,6 +326,19 @@ color: dodgerblue;
     color: #fff;
     margin-top: 20px;
     cursor: pointer;
+    position: relative;
+}
+
+.button1>p {
+    width: 50%;
+    height: 50%;
+    margin: 0;
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .button2>a{
     font-size:15px;
@@ -625,6 +637,7 @@ li:hover>[id*="dropnav"], [id*="dropnav"]:hover{
     color:rgba(30, 144, 255, 0.7);
 }
 #footer{
+    display:flex;
     margin-top:50px;
     background-color:rgba(70,70,70,0.9);
     width:100%;
@@ -723,4 +736,13 @@ li:hover>[id*="dropnav"], [id*="dropnav"]:hover{
     color:initial;
     font-size:20px;
     justify-content: center;
+}
+.flexcenter{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    padding: 0;
+    margin: 0;
 }

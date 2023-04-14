@@ -18,6 +18,7 @@
             <ul class="row-12">
                 <li id = "btn-rs">예약 관리</li>
                 <li id = "btn-user">회원 관리</li>
+                <li id="btn-inquiry">문의 관리</li>
             </ul>
         </div>
         <div class="col-10">
@@ -67,6 +68,34 @@
                         <td th:text="${user.gender}"></td>
                         <td th:text="${user.birth}"></td>
                         <td th:text="${user.admin}"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <table id="table-inquiry" class="table-1 hidden">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>제목</th>
+                        <th>내용</th>
+                        <th>이미지</th>
+                        <th>작성시간</th>
+                        <th>이름</th>
+                        <th>연락처</th>
+                        <th>조회비밀번호</th>
+                        <th>유저id</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="iq : ${inquiries}">
+                        <td th:text="${iq.inquiry_id}"></td>
+                        <td th:text="${iq.inquiry_title}"></td>
+                        <td th:text="${iq.inquiry_content}"></td>
+                        <td th:text="${iq.inquiry_image}"></td>
+                        <td th:text="${iq.inquiry_datetime}"></td>
+                        <td th:text="${iq.inquiry_name}"></td>
+                        <td th:text="${iq.inquiry_contact}"></td>
+                        <td th:text="${iq.inquiry_password}"></td>
+                        <td th:text="${iq.user_id}"></td>
                     </tr>
                 </tbody>
             </table>

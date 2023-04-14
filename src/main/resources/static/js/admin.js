@@ -1,6 +1,6 @@
 "use strict"
 const menuSwitch = (()=>{
-    const menus = ["rs","user"];
+    const menus = ["rs","user","inquiry"];
     for(let menu of menus){
         document.getElementById(`btn-${menu}`).setAttribute("onclick",`menuSwitch("table-${menu}")`);
     }

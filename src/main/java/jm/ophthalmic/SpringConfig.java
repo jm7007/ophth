@@ -4,10 +4,13 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import jakarta.persistence.EntityManager;
+import jm.ophthalmic.repository.InquiryRepository;
 import jm.ophthalmic.repository.JpaUserRepository;
+import jm.ophthalmic.repository.MemoryInquiryRepository;
 import jm.ophthalmic.repository.MemoryReservationRepository;
 import jm.ophthalmic.repository.ReservationRepository;
 import jm.ophthalmic.repository.UserRepository;
+import jm.ophthalmic.service.InquiryService;
 import jm.ophthalmic.service.ReservationService;
 import jm.ophthalmic.service.UserService;
 
@@ -35,6 +38,12 @@ public class SpringConfig {
     ReservationRepository reservationRepository(){
         return new MemoryReservationRepository();
     }
-
-    
+    @Bean
+    public InquiryService inquiryService(){
+        return new InquiryService(inquiryRepository());
+    }
+    @Bean 
+    InquiryRepository inquiryRepository(){
+        return new MemoryInquiryRepository();
+    }
 }

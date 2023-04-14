@@ -27,7 +27,7 @@
                     </div>
                 </div>
                 <div class="row" style="margin:10px 0 0 5px;align-items:center;">
-                    <input type="checkbox" class="checkbox-1" id="id_save" name="id_save">
+                    <input type="checkbox" class="checkbox-1" id="id_save" name="id_save" autocomplete="on">
                     <label for="id_save"></label>
                     <span style="margin-left: 10px; font-size:14px;">아이디 저장</span>
                 </div>
@@ -40,6 +40,15 @@
             |<a href="join">회원가입</a>
         </div>
     </div>
+    <!--session-->
+    <!-- <div id="ss_save_id" class="hidden" th:text="${save_id}"></div> -->
+    <script>
+        "use strict"
+        if (/*[[${session.id_save}]]*/"0" != "0") {
+            document.getElementById("user_id").setAttribute("th:value") = "${session.id_save}";
+        }
+    </script>
+    <!--session-->
 </body>
 
 </html>

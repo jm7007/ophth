@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <title>JM안과</title>
+    <link th:href="@{/css/main.css}" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="top-nav"></div>
+    <div class="body">
+        <div class="wrapper">
+            <form id="register-form" action="/inquiry/iq-register" method="post">
+                <label for="inquiry_title">제목</label>
+                <input type="text" id="inquiry_title" name="inquiry_title" required>
+                <label for="inquiry_password">문의 조회용 비밀번호</label>
+                <input class="hidden" type="password" id="inquiry_password" name="inquiry_password">
+                <label for="inquiry_content">내용</label>
+                <textarea type="textbox" id="inquiry_content" name="inquiry_content" required>dd</textarea>
+                <label for="inquiry_image">이미지</label>
+                <input type="file" id="inquiry_image" name="inquiry_image">
+                <input class="hidden" type="text" id="inquiry_name" name="inquiry_name" th:value="${iqname}">
+                <input class="hidden" type="tel" id="inquiry_contact" name="inquiry_contact" th:value="${iqcontact}">
+                <input class="hidden" type="text" id="inquiry_create_datetime" name="inquiry_create_datetime">
+                <button onsubmit="inputCreateTime()" type="submit">문의하기</button>
+            </form>
+        </div>
+        <div id="footer"></div>
+    </div>
+    <!--session-->
+    <div id="ss_id" class="hidden" th:text="${session.id}"></div>
+    <div id="ss_name" class="hidden" th:text="${session.name}"></div>
+    <div id="ss_admin" class="hidden" th:text="${session.admin}"></div>
+    <!--/session-->
+    <script type="text/javascript" th:src="@{/js/mainUI.js}"></script>
+    <script>
+        function inputCreateTime() {
+            document.getElementById("iquiry_create_datetime").setAttribute("th:value", "${Date()}");
+        }
+    </script>
+</body>
+
+</html>

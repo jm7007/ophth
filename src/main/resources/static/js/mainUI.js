@@ -70,7 +70,7 @@ function makeTopNav() {
     //mainmenu - JM안과
     const mainmenu1 = document.createElement("li");
     const mainmenu1_a = document.createElement("a");
-    mainmenu1_a.setAttribute("href", "info");
+    mainmenu1_a.setAttribute("href", "/info");
     mainmenu1_a.innerHTML = "JM 안과";
     mainmenu1.appendChild(mainmenu1_a);
     nav.appendChild(mainmenu1);
@@ -80,9 +80,9 @@ function makeTopNav() {
     const dropnav1 = document.createElement("ul"); //시력교정의 드랍다운메뉴
     dropnav1.setAttribute("id", "dropnav1");
     dropnav1.innerHTML =
-        `<li><a href='lasik'>스마일 라식</a></li>
-    <li><a href='implantable'>렌즈삽입수술</a></li>
-    <li><a href='dryeye'>안구건조증</a></li>`;
+        `<li><a href='/lasik'>스마일 라식</a></li>
+    <li><a href='/implantable'>렌즈삽입수술</a></li>
+    <li><a href='ldryeye'>안구건조증</a></li>`;
     mainmenu2.appendChild(dropnav1);
     nav.appendChild(mainmenu2);
     //mainmenu - 노안*백내장
@@ -91,8 +91,8 @@ function makeTopNav() {
     const dropnav2 = document.createElement("ul"); //시력교정의 드랍다운메뉴
     dropnav2.setAttribute("id", "dropnav2");
     dropnav2.innerHTML =
-        `<li><a href='oldeye'>노안</a></li>
-    <li><a href='cataract'>백내장</a></li>`;
+        `<li><a href='/oldeye'>노안</a></li>
+    <li><a href='/cataract'>백내장</a></li>`;
     mainmenu3.appendChild(dropnav2);
     nav.appendChild(mainmenu3);
     //mainmenu - 커뮤니티
@@ -101,14 +101,14 @@ function makeTopNav() {
     const dropnav3 = document.createElement("ul"); //시력교정의 드랍다운메뉴
     dropnav3.setAttribute("id", "dropnav3");
     dropnav3.innerHTML =
-    `<li><a href='community/news'>병원 소식</a></li>
-        <li><a href='community/review'>시술 후기</a></li>`;
+    `<li><a href='/news'>병원 소식</a></li>
+        <li><a href='/inquiry'>문의하기</a></li>`;
     mainmenu4.appendChild(dropnav3);
     nav.appendChild(mainmenu4);
     //로그인창
     //관리자 세션 1이면 관리자 메뉴 띄우기
     if (ss_admin == 1) {
-        nav.innerHTML += `<li><a href='admin'>관리자</a></li>`;
+        nav.innerHTML += `<li><a href='/admin'>관리자</a></li>`;
 
     }
     const loginArea = document.createElement("div");
@@ -125,15 +125,15 @@ function makeTopNav() {
         // loginFunction.setAttribute("class","hidden");
         loginFunction.innerHTML =
         `<li><a href='#'>회원 정보</a></li>
-        <li><a href='modifyuser'>회원 수정</a></li>
-        <li><a href='logout'>로그 아웃</a></li>`
+        <li><a href='/modifyuser'>회원 수정</a></li>
+        <li><a href='/logout'>로그 아웃</a></li>`
         logined.appendChild(loginFunction);
         //로그인 세션 없음
     } else {
         console.log("account not ditected")
         const login = document.createElement("a");
         login.setAttribute("class", "head-login");
-        login.setAttribute("href", "login");
+        login.setAttribute("href", "/login");
         login.innerHTML = "로그인";
         loginArea.appendChild(login);
     }
@@ -230,10 +230,7 @@ const sidePageDisplay = (function () {
             onOff = 0;
         }
     }
-})
-try{
-sidePageDisplay();
-}catch(e){}
+})();
 const sidePageChange = ((page) => {
     switch (page) {
         case 'rs':
