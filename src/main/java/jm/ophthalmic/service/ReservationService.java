@@ -4,12 +4,9 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.transaction.annotation.Transactional;
-
 import jm.ophthalmic.domain.Reservation;
 import jm.ophthalmic.repository.ReservationRepository;
 
-@Transactional
 public class ReservationService {
     
     private final ReservationRepository reservationRepository;
