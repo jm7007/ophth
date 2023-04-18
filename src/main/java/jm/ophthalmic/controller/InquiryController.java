@@ -58,7 +58,8 @@ public class InquiryController {
             return "exception/wrong";
         }
         inquiryService.register(inquiry);
-        return "success";
+        System.out.println(inquiry);
+        return "redirect:/";
     }
     
 }

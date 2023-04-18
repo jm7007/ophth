@@ -16,13 +16,13 @@
         <div id="admin-nav" class="col-2">
             <h1 class="row">관리자 메뉴</h1>
             <ul class="row-12">
-                <li id = "btn-rs">예약 관리</li>
-                <li id = "btn-user">회원 관리</li>
+                <li id="btn-rs">예약 관리</li>
+                <li id="btn-user">회원 관리</li>
                 <li id="btn-inquiry">문의 관리</li>
             </ul>
         </div>
         <div class="col-10">
-            <table id = "table-rs" class = "table-1">
+            <table id="table-rs" class="table-1">
                 <thead>
                     <tr>
                         <th>id</th>
@@ -91,7 +91,7 @@
                         <td th:text="${iq.inquiry_title}"></td>
                         <td th:text="${iq.inquiry_content}"></td>
                         <td th:text="${iq.inquiry_image}"></td>
-                        <td th:text="${iq.inquiry_datetime}"></td>
+                        <td th:text="${iq.inquiry_create_datetime}"></td>
                         <td th:text="${iq.inquiry_name}"></td>
                         <td th:text="${iq.inquiry_contact}"></td>
                         <td th:text="${iq.inquiry_password}"></td>

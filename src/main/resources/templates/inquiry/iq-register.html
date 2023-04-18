@@ -24,8 +24,8 @@
                 <input type="file" id="inquiry_image" name="inquiry_image">
                 <input class="hidden" type="text" id="inquiry_name" name="inquiry_name" th:value="${iqname}">
                 <input class="hidden" type="tel" id="inquiry_contact" name="inquiry_contact" th:value="${iqcontact}">
-                <input class="hidden" type="text" id="inquiry_create_datetime" name="inquiry_create_datetime">
-                <button onsubmit="inputCreateTime()" type="submit">문의하기</button>
+                <input class="hidden" type="datetime-local" id="inquiry_create_datetime" name="inquiry_create_datetime">
+                <button onclick="iqSubmit()">문의하기</button>
             </form>
         </div>
         <div id="footer"></div>
@@ -38,7 +38,12 @@
     <script type="text/javascript" th:src="@{/js/mainUI.js}"></script>
     <script>
         function inputCreateTime() {
-            document.getElementById("iquiry_create_datetime").setAttribute("th:value", "${Date()}");
+            document.getElementById("iquiry_create_datetime").setAttribute("value", new Date().toISOString().slice(0,16));
+            alert("문의 요청이 완료되었습니다.");
+        }
+        function iqSubmit(){
+            inputCreateTime();
+            document.getElementById("register-form").submit();
         }
     </script>
 </body>
