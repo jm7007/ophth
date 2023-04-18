@@ -1,0 +1,11 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+    <div id="msg" th:text="${msg}"></div>
+    <script>
+        alert(document.getElementById("msg").innerText);
+        history.go(-1);
+    </script>
+</body>
+
+</html>

@@ -2,20 +2,20 @@ package jm.ophthalmic.domain;
 
 import java.time.LocalDate;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+// import jakarta.persistence.Entity;
+// import jakarta.persistence.GeneratedValue;
+// import jakarta.persistence.GenerationType;
+// import jakarta.persistence.Id;
+// import lombok.ToString;
 import lombok.Data;
-import lombok.ToString;
 
-@Entity
+// @Entity
+// @ToString
 @Data
-@ToString
 public class User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    // @Id
+    // @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String account;
     private String password;
@@ -25,6 +25,4 @@ public class User {
     private String gender;
     private LocalDate birth;
     private Byte admin;
-
-    
 }

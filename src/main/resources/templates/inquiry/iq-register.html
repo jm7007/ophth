@@ -16,7 +16,7 @@
             <form id="register-form" action="/inquiry/iq-register" method="post">
                 <label for="inquiry_title">제목</label>
                 <input type="text" id="inquiry_title" name="inquiry_title" required>
-                <label for="inquiry_password">문의 조회용 비밀번호</label>
+                <label class="hidden" for="inquiry_password">문의 조회용 비밀번호</label>
                 <input class="hidden" type="password" id="inquiry_password" name="inquiry_password">
                 <label for="inquiry_content">내용</label>
                 <textarea type="textbox" id="inquiry_content" name="inquiry_content" required>dd</textarea>
@@ -37,13 +37,35 @@
     <!--/session-->
     <script type="text/javascript" th:src="@{/js/mainUI.js}"></script>
     <script>
-        function inputCreateTime() {
-            document.getElementById("iquiry_create_datetime").setAttribute("value", new Date().toISOString().slice(0,16));
-            alert("문의 요청이 완료되었습니다.");
+        //비회원일 경우 문의 조회를 위한 패스워드 생성
+        function inputPassword() {
+            if (document.getElementById("ss_id").innerHTML == '') {
+                let passwordForm = document.getElementById("inquiry_password");
+                passwordForm.classList.remove("hidden");
+                passwordForm.required = true;
+                //해당하는 라벨을 찾아서 보이게하기
+                for (let label of document.getElementsByTagName("label")) {
+                    if (label.getAttribute("for") == "inquiry_password") {
+                        label.classList.remove("hidden");
+                    }
+                }
+            }
         }
-        function iqSubmit(){
+        inputPassword();
+        //자동으로 작성 날짜 삽입
+        function inputCreateTime() {
+            document.getElementById("inquiry_create_datetime").setAttribute("value", new Date().toISOString().slice(0, 16));
+        }
+        //서브밋 하기 직전의 프로세스를 위한 서브밋 함수
+        function iqSubmit() {
             inputCreateTime();
-            document.getElementById("register-form").submit();
+            let form = document.getElementById("register-form");
+            if(form.checkValidity()){
+                form.submit();
+                alert(`문의 요청이 완료되었습니다.`);
+            }else{
+                alert("잘못된 형식입니다.");
+            }
         }
     </script>
 </body>

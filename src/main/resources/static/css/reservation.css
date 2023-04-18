@@ -48,6 +48,9 @@
     justify-content: center;
     text-align: center;
 }
+#rs_info{
+    padding:20px;
+}
 #cal-days *{
     height:30px;
     width:40px;
@@ -56,3 +59,4 @@
 #cal-days{
     width:100%;
 }
+

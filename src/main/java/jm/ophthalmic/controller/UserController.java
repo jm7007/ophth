@@ -83,14 +83,18 @@ public class UserController {
         return "exception/loginfail";
     }
     @GetMapping("modifyuser")
-    public String modifyuser(Model model,HttpSession session){
-        User user = userService.findOnebyId((long)session.getAttribute("id")).get();
+    public String modifyuser(Model model, @SessionAttribute("id") Long id){
+        User user = userService.findOnebyId(id).get();
         model.addAttribute("user",userService.convertForm(user));
         return "modifyuser";
     }
     @PostMapping("modifyuser/new")
-    public String modifyuserPost(UserForm userForm,@SessionAttribute("id") Long id){
-        userService.modifyUser(id, userService.convertForm(userForm));
+    public String modifyuserPost(UserForm userForm,@SessionAttribute("id") Long id, Model model){
+        Optional<User> user = userService.modifyUser(id, userService.convertForm(userForm));
+        if(user == null){
+            model.addAttribute("msg", "회원정보 수정이 실패하였습니다.");
+            return "exception/alertandback";
+        }
         return "redirect:/";
     }
 }

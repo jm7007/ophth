@@ -101,7 +101,7 @@ function makeTopNav() {
     const dropnav3 = document.createElement("ul"); //시력교정의 드랍다운메뉴
     dropnav3.setAttribute("id", "dropnav3");
     dropnav3.innerHTML =
-    `<li><a href='/news'>병원 소식</a></li>
+        `<li><a href='/news'>병원 소식</a></li>
         <li><a href='/inquiry'>문의하기</a></li>`;
     mainmenu4.appendChild(dropnav3);
     nav.appendChild(mainmenu4);
@@ -124,7 +124,7 @@ function makeTopNav() {
         const loginFunction = document.createElement("ul"); //보조메뉴 리스트를 담을 ul
         // loginFunction.setAttribute("class","hidden");
         loginFunction.innerHTML =
-        `<li><a href='#'>회원 정보</a></li>
+            `<li><a href='#'>회원 정보</a></li>
         <li><a href='/modifyuser'>회원 수정</a></li>
         <li><a href='/logout'>로그 아웃</a></li>`
         logined.appendChild(loginFunction);
@@ -138,39 +138,39 @@ function makeTopNav() {
         loginArea.appendChild(login);
     }
 }
-try{
+try {
     makeTopNav();
-}catch(e){}
+} catch (e) { }
 
-function footer(){
+function footer() {
     const footer = document.getElementById("footer");
     const container_left = document.createElement("div");
     const container_center = document.createElement("div");
     const container_right = document.createElement("div");
-    container_left.setAttribute("class","col-3");
-    container_center.setAttribute("class","col-6");
-    container_right.setAttribute("class","col-3");
+    container_left.setAttribute("class", "col-3");
+    container_center.setAttribute("class", "col-6");
+    container_right.setAttribute("class", "col-3");
     const footer_img = document.createElement("img");
-    footer_img.setAttribute("src","/images/002-w.png");
+    footer_img.setAttribute("src", "/images/002-w.png");
     container_left.appendChild(footer_img);
-    container_center.innerHTML=
-    `<p>상호 : JM안과의원 &nbsp; &nbsp; | &nbsp; &nbsp; TEL : 02-444-4444<br>주소 : 서울시 동대문구 장안동 345-7 &nbsp; | &nbsp; 도로명주소 : 서울시 장한로 22길 13<br>
+    container_center.innerHTML =
+        `<p>상호 : JM안과의원 &nbsp; &nbsp; | &nbsp; &nbsp; TEL : 02-444-4444<br>주소 : 서울시 동대문구 장안동 345-7 &nbsp; | &nbsp; 도로명주소 : 서울시 장한로 22길 13<br>
     사업자등록번호 : 123-45-67890 (대표자: 이종민)<br>
     reference : 비앤빛 강남밝은세상안과의원, 눈에미소안과</p>`;
-    container_right.innerHTML=
-    `<h2>대표번호</h2>
+    container_right.innerHTML =
+        `<h2>대표번호</h2>
     <h2>02-1234-5678</h2>`;
     //footer append container
     footer.appendChild(container_left);
     footer.appendChild(container_center);
     footer.appendChild(container_right);
-    
-}
-try{
-    footer();
-}catch(e){}
 
-function makeSidePage(){
+}
+try {
+    footer();
+} catch (e) { }
+
+function makeSidePage() {
     const sidepage = document.getElementById("sidepage");
     sidepage.innerHTML = `
     <div id="side-page" class="col-8">
@@ -212,24 +212,26 @@ function makeSidePage(){
         </ul>
     </nav>`
 }
-try{
-makeSidePage();
-}catch(e){}
+try {
+    makeSidePage();
+} catch (e) { }
 
 const sidePageDisplay = (function () {
-    const sidePageClassList = document.getElementById("side-page").classList;
-    let onOff = 0;
-    return function () {
-        if (onOff == 0) {
-            sidePageClassList.remove("side-page-slide-aniOff");
-            sidePageClassList.add("side-page-slide-ani");
-            onOff = 1;
-        } else {
-            sidePageClassList.remove("side-page-slide-ani");
-            sidePageClassList.add("side-page-slide-aniOff");
-            onOff = 0;
+    try {
+        const sidePageClassList = document.getElementById("side-page").classList;
+        let onOff = 0;
+        return function () {
+            if (onOff == 0) {
+                sidePageClassList.remove("side-page-slide-aniOff");
+                sidePageClassList.add("side-page-slide-ani");
+                onOff = 1;
+            } else {
+                sidePageClassList.remove("side-page-slide-ani");
+                sidePageClassList.add("side-page-slide-aniOff");
+                onOff = 0;
+            }
         }
-    }
+    } catch (e) { console.log("sidepage-display-off"); }
 })();
 const sidePageChange = ((page) => {
     switch (page) {

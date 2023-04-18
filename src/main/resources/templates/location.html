@@ -38,8 +38,8 @@
 <body>
     <div class="wrapper">
         <h2><span>지하철 5호선 장한평역</span> 3번출구의  <span class="green";>  2416, 2233, 2112</span> 번 등의 버스를 타고 오시면 편하게 오실 수 있습니다.</h2>
-        <div class="row" style="height:350px; width:100%;">
-            <div class="col-6" style="flex-direction: column;">
+        <div class="row" style="height:350px; width:100%; margin-top:50px;">
+            <div class="col-6" style="flex-direction: column; align-items: start;">
                 <h1>서울 동대문구 장한로22길 13 썬앤빌 시그니처 오피스텔</h1>
                 <p> 지번 | 서울 동대문구 장안동 345-7</p>
                 <h1>주차안내</h1>
@@ -50,23 +50,25 @@
                 </ul>
             </div>
             <div class="col-6">
-                <div id="map" style="width:100%;"></div>
+                <div id="map" style="width:100%;height:100%;"></div>
             </div>
         </div>
 
     </div>
-    <script type="text/javascript" th:src="@{/js/mainUI.js}"></script>
     <script type="text/javascript"
         src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=mjlypixeky"></script>
     <script>
+        //가운데 올 좌표(장한평역과 병원의 중간지점)
         let map = new naver.maps.Map('map', {
-            center: new naver.maps.LatLng(37.56621, 127.06713), // 잠실 롯데월드를 중심으로 하는 지도
+            center: new naver.maps.LatLng(37.56621, 127.06713),
             zoom: 14
         });
+        //마커 찍을 좌표(병원)
         let marker = new naver.maps.Marker({
             position: new naver.maps.LatLng(37.56961, 127.07113),
             map: map
         });
+        //말풍선 만들기
         let contentString = `<h3 style="padding:5px 20px;">JM안과</h3>`;
         let infowindow = new naver.maps.InfoWindow({
             content: contentString

@@ -10,6 +10,7 @@ import jm.ophthalmic.service.InquiryService;
 import jm.ophthalmic.service.UserService;
 
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 
 @Controller
@@ -31,7 +32,7 @@ public class InquiryController {
     @PostMapping("inquiry/iq-enter")
     public String nonUserInquiry(Inquiry inquiry, HttpSession session) {
         session.setAttribute("iqname", inquiry.getInquiry_name());
-        session.setAttribute("iqcontact", inquiry.getInquiry_name());
+        session.setAttribute("iqcontact", inquiry.getInquiry_contact());
         return "redirect:iq-register";
     }
     @GetMapping("inquiry/iq-register")
@@ -57,8 +58,11 @@ public class InquiryController {
         if(inquiry == null){
             return "exception/wrong";
         }
+        //로그인id 세션이 있을 경우 user_id 필드에 대입
+        if(session.getAttribute("id") != null){
+            inquiry.setUser_id((long)session.getAttribute("id"));
+        }
         inquiryService.register(inquiry);
-        System.out.println(inquiry);
         return "redirect:/";
     }
     

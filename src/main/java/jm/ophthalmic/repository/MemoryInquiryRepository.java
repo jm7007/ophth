@@ -17,6 +17,7 @@ public class MemoryInquiryRepository implements InquiryRepository{
     public Inquiry save(Inquiry inquiry) {
         inquiry.setInquiry_id(++sequence);
         store.put(inquiry.getInquiry_id(), inquiry);
+        System.out.println("저장 문의 정보: "+inquiry);
         return inquiry;
         
     }

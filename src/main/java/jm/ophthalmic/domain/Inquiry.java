@@ -7,7 +7,6 @@ import lombok.Data;
 
 @Data
 public class Inquiry{
-    
     private Long inquiry_id;
     private String inquiry_title;
     private String inquiry_content;

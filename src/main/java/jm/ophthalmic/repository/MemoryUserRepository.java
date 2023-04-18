@@ -28,12 +28,12 @@ public class MemoryUserRepository implements UserRepository{
 
     @Override
     public Optional<User> findbyAccount(String account) {
-        return store.values().stream().filter(user -> user.getAccount() == account).findAny();
+        return store.values().stream().filter(user -> user.getAccount().equals(account)).findAny();
     }
 
     @Override
     public Optional<User> findbyEmail(String email) {
-        return store.values().stream().filter(user -> user.getEmail() == email).findAny();
+        return store.values().stream().filter(user -> user.getEmail().equals(email)).findAny();
     }
 
     @Override
