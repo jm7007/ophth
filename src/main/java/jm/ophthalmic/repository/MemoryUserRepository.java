@@ -78,5 +78,71 @@ public class MemoryUserRepository implements UserRepository{
         u2.setGender("M");
         u2.setAdmin((byte)1);
         save(u2);
+
+        User u3 = new User();
+        u3.setAccount("minsujjang");
+        u3.setPassword("dsafhk62326");
+        u3.setEmail("minmin@gogo.co.kr");
+        u3.setName("김민수");
+        u3.setContact("01012341234");
+        u3.setBirth(LocalDate.of(1971,3,21));
+        u3.setGender("M");
+        u3.setAdmin((byte)0);
+        save(u3);
+
+        User u4 = new User();
+        u4.setAccount("shm1223");
+        u4.setPassword("1223shm");
+        u4.setEmail("shm1223@naver.com");
+        u4.setName("손흥민");
+        u4.setContact("01055555555");
+        u4.setBirth(LocalDate.of(1992,7,8));
+        u4.setGender("M");
+        u4.setAdmin((byte)0);
+        save(u4);
+
+        User u5 = new User();
+        u5.setAccount("chch5020");
+        u5.setPassword("5020");
+        u5.setEmail("chch9090@gmail.com");
+        u5.setName("이철수");
+        u5.setContact("01053487652");
+        u5.setBirth(LocalDate.of(1961,5,7));
+        u5.setGender("M");
+        u5.setAdmin((byte)0);
+        save(u5);
+
+        User u6 = new User();
+        u6.setAccount("hkd123");
+        u6.setPassword("hong123123");
+        u6.setEmail("hong55@hanmail.net");
+        u6.setName("홍길동");
+        u6.setContact("01012341237");
+        u6.setBirth(LocalDate.of(1925,1,1));
+        u6.setGender("N");
+        u6.setAdmin((byte)0);
+        save(u6);
+
+        User u7 = new User();
+        u7.setAccount("yungho77");
+        u7.setPassword("skajfsla");
+        u7.setEmail("younghogood@naver.com");
+        u7.setName("이영호");
+        u7.setContact("01012341240");
+        u7.setBirth(LocalDate.of(1987,3,23));
+        u7.setGender("M");
+        u7.setAdmin((byte)0);
+        save(u7);
+
+        User u8 = new User();
+        u8.setAccount("jina77");
+        u8.setPassword("kimjina77");
+        u8.setEmail("kimjina@naver.com");
+        u8.setName("김진아");
+        u8.setContact("01077777777");
+        u8.setBirth(LocalDate.of(1977,7,7));
+        u8.setGender("W");
+        u8.setAdmin((byte)0);
+        save(u8);
     }
 }

@@ -31,7 +31,7 @@ public class InquiryController {
     public String nonUserInquiry(Inquiry inquiry, HttpSession session) {
         session.setAttribute("iqname", inquiry.getInquiry_name());
         session.setAttribute("iqcontact", inquiry.getInquiry_contact());
-        return "redirect:iq-register";
+        return "redirect:/iq-register";
     }
     @GetMapping("inquiry/iq-register")
     public String InquiryRegister(Model model, HttpSession session){

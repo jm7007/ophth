@@ -8,14 +8,24 @@
     <title>JM안과</title>
     <link th:href="@{/css/main.css}" rel="stylesheet" />
 </head>
+
 <body>
     <div id="top-nav"></div>
-    
+    <div class="body">
+        <div class="wrapper">
+            <h1 th:text="${news.title}">title</h1>
+            <div>
+                <p th:text="${news.content}">content</p>
+            </div>
+        </div>
+        <div id="footer"></div>
+    </div>
     <!--session-->
     <div id="ss_id" class="hidden" th:text="${session.id}"></div>
     <div id="ss_name" class="hidden" th:text="${session.name}"></div>
     <div id="ss_admin" class="hidden" th:text="${session.admin}"></div>
     <!--/session-->
-    <script src="/js/mainUI.js"></script>
+    <script type="text/javascript" th:src="@{/js/mainUI.js}"></script>
 </body>
+
 </html>

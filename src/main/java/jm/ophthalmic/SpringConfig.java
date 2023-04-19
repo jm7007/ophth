@@ -7,11 +7,14 @@ import org.springframework.context.annotation.Configuration;
 import jm.ophthalmic.repository.InquiryRepository;
 // import jm.ophthalmic.repository.JpaUserRepository;
 import jm.ophthalmic.repository.MemoryInquiryRepository;
+import jm.ophthalmic.repository.MemoryNewsRepository;
 import jm.ophthalmic.repository.MemoryReservationRepository;
 import jm.ophthalmic.repository.MemoryUserRepository;
+import jm.ophthalmic.repository.NewsRepository;
 import jm.ophthalmic.repository.ReservationRepository;
 import jm.ophthalmic.repository.UserRepository;
 import jm.ophthalmic.service.InquiryService;
+import jm.ophthalmic.service.NewsService;
 import jm.ophthalmic.service.ReservationService;
 import jm.ophthalmic.service.UserService;
 
@@ -33,12 +36,12 @@ public class SpringConfig {
     }
     //mysql 데이터베이스 <-> 메모리 데이터베이스 간의 전환 가능
     @Bean 
-    UserRepository userRepository(){
+    public UserRepository userRepository(){
         // return new JpaUserRepository(em);
         return new MemoryUserRepository();
     }
     @Bean
-    ReservationRepository reservationRepository(){
+    public ReservationRepository reservationRepository(){
         return new MemoryReservationRepository();
     }
     @Bean
@@ -46,7 +49,15 @@ public class SpringConfig {
         return new InquiryService(inquiryRepository());
     }
     @Bean 
-    InquiryRepository inquiryRepository(){
+    public InquiryRepository inquiryRepository(){
         return new MemoryInquiryRepository();
+    }
+    @Bean
+    public NewsService newsService(){
+        return new NewsService(newsRepository());
+    }
+    @Bean
+    public NewsRepository newsRepository(){
+        return new MemoryNewsRepository();
     }
 }

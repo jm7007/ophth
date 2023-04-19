@@ -327,8 +327,13 @@ color: dodgerblue;
     margin-top: 20px;
     cursor: pointer;
     position: relative;
+    border-color: dodgerblue;
+    border-style: outset;
 }
-
+.button1:active{
+    border-style:inset;
+    border-color: dodgerblue;
+}
 .button1>p {
     width: 50%;
     height: 50%;

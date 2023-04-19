@@ -12,17 +12,22 @@
 <body>
     <div id="top-nav"></div>
     <div class="body">
-        <div class="wrapper col-9">
-            <div class="col-2">
-                <h1>커뮤니티</h1>
+        <div class="wrapper" style="width:80%">
+            <header><h1>JM 소식</h1></header>
+            <div>
+                <a href="/news/write"><button>글 작성</button></a>
+            </div>
+            <div>컨텐츠
                 <ul>
-                    <li>병원 소식</li>
-                    <li>시술 후기</li>
+                    <li th:each="news : ${allnews}">
+                        <a th:href="'news/view/'+ ${news.id}">
+                            <img th:src="${news.imagePath}">
+                            <span th:text="${news.title}">제목</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
-            <div class="col-10">
-                <iframe src="${content}"></iframe>
-            </div>
+            <div>하단메뉴(페이지넘기기)</div>
         </div>
         <div id="footer"></div>
     </div>
