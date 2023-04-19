@@ -73,10 +73,10 @@ public class MemoryUserRepository implements UserRepository{
         u2.setPassword("2345");
         u2.setEmail("jung@naver.com");
         u2.setName("조정래");
-        u2.setContact("01077777777");
+        u2.setContact("01077671637");
         u2.setBirth(LocalDate.of(1993,7,7));
         u2.setGender("M");
-        u2.setAdmin((byte)0);
+        u2.setAdmin((byte)1);
         save(u2);
     }
 }

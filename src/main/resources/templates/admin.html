@@ -90,7 +90,7 @@
                         <td th:text="${iq.inquiry_id}"></td>
                         <td th:text="${iq.inquiry_title}"></td>
                         <td th:text="${iq.inquiry_content}"></td>
-                        <td th:text="${iq.inquiry_image}"></td>
+                        <td><img th:src="${iq.inquiry_imagePath}" th:alt="${iq.inquiry_imagePath}"></td>
                         <td th:text="${iq.inquiry_create_datetime}"></td>
                         <td th:text="${iq.inquiry_name}"></td>
                         <td th:text="${iq.inquiry_contact}"></td>

@@ -10,8 +10,6 @@ import jm.ophthalmic.service.InquiryService;
 import jm.ophthalmic.service.UserService;
 
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.SessionAttribute;
-
 
 @Controller
 public class InquiryController {
@@ -61,6 +59,10 @@ public class InquiryController {
         //로그인id 세션이 있을 경우 user_id 필드에 대입
         if(session.getAttribute("id") != null){
             inquiry.setUser_id((long)session.getAttribute("id"));
+        }
+        //이미지 파일이 있을 경우 이미지 정보 디테일을 저장하는 메서드 호출
+        if(inquiry.getInquiry_image() != null){
+            inquiry = inquiryService.saveImageDetail(inquiry);
         }
         inquiryService.register(inquiry);
         return "redirect:/";

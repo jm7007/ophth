@@ -35,4 +35,8 @@ public class MemoryInquiryRepository implements InquiryRepository{
     public List<Inquiry> findAll() {
         return new ArrayList<>(store.values());
     }
+    @Override
+    public Long storageSize() {
+        return sequence;
+    }
 }

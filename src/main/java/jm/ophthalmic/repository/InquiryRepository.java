@@ -12,4 +12,5 @@ public interface InquiryRepository {
     Optional<Inquiry> findbyId(Long id);
     List<Inquiry> findbyUserId(Long user_id);
     List<Inquiry> findAll();
+    Long storageSize();
 }

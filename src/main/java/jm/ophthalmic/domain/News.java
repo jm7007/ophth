@@ -1,7 +1,6 @@
 package jm.ophthalmic.domain;
 
-import java.sql.Blob;
-import java.util.Date;
+import java.time.LocalDate;
 
 import lombok.Data;
 
@@ -11,8 +10,7 @@ public class News {
     private String title;
     private String content;
     private String writer;
-    private Date date;
-    private Date last_update;
-    private Blob image;
+    private LocalDate date;
+    private LocalDate last_update;
 
 }
