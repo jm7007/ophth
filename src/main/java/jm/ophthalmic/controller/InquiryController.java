@@ -31,7 +31,7 @@ public class InquiryController {
     public String nonUserInquiry(Inquiry inquiry, HttpSession session) {
         session.setAttribute("iqname", inquiry.getInquiry_name());
         session.setAttribute("iqcontact", inquiry.getInquiry_contact());
-        return "redirect:/iq-register";
+        return "redirect:/inquiry/iq-register";
     }
     @GetMapping("inquiry/iq-register")
     public String InquiryRegister(Model model, HttpSession session){
@@ -61,7 +61,7 @@ public class InquiryController {
             inquiry.setUser_id((long)session.getAttribute("id"));
         }
         //이미지 파일이 있을 경우 이미지 정보 디테일을 저장하는 메서드 호출
-        if(inquiry.getInquiry_image() != null){
+        if(inquiry.getInquiry_image().getOriginalFilename() != ""){
             inquiry = inquiryService.saveImageDetail(inquiry);
         }
         inquiryService.register(inquiry);
