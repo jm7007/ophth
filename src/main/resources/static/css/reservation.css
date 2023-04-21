@@ -59,4 +59,8 @@
 #cal-days{
     width:100%;
 }
+[id^="cal-days-d-"]:active{
+    background-color: dodgerblue;
+
+}
 

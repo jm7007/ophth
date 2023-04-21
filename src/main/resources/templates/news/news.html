@@ -9,65 +9,94 @@
     <link th:href="@{/css/main.css}" rel="stylesheet" />
     <style>
         .wrapper {
-            width:80%;
-            min-width:800px;
-            border:1px solid;
+            width: 55%;
+            min-width: 700px;
             align-self: center;
         }
 
-        #newslist {}
+        h1 {
+            margin-top: 70px;
+            font-size: 30px;
+            text-align: center;
+        }
 
-        #newslist ul {
-            display:flex;
+        #newslist {
+            display: flex;
             flex-wrap: wrap;
-            padding:20px;
-            border:1px solid;
+            padding: 20px;
+            border: 3px double black;
+            border-left: none;
+            border-right: none;
         }
 
         #newslist li {
-            display:flex;
-            width:200px;
-            height:200px;
-            margin:20px;
+            display: flex;
+            width: 200px;
+            height: 200px;
+            margin: 23px 25px;
         }
-        #newslist li:hover{
-            opacity:0.7;
+
+        #newslist li:hover {
+            opacity: 0.7;
         }
 
         #newslist a {
-            display:flex;
-            position:relative;
-            width:100%;
-            height:100%;
+            display: flex;
+            position: relative;
+            width: 100%;
+            height: 100%;
         }
 
         #newslist img {
-            width:100%;
-            height:100%;
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
         }
 
         #newslist span {
-            position:absolute;
-            top:102%;
-            left:0;
-            color:black;
+            position: absolute;
+            top: 102%;
+            left: 0;
+            color: black;
             font-family: sans-serif;
+            font-size: 14px;
+        }
+        .board-top-menu {
+            display: flex;
+    justify-content: flex-end;
+        }
+        .board-top-menu button{
+            margin: 0 5px;
+    height: 30px;
+    width: 80px;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+    border-radius: 5px;
+    color: white;
+    font-size: 13px;
+    font-weight: 700;
+    border: 2px outset black;
+        }
+        .board-top-menu button:active{
+            border-style: inset;
         }
     </style>
 </head>
 
-<body>
+<body class="background-img-9">
     <div id="top-nav"></div>
     <div class="body">
-        <div class="wrapper" style="width:80%">
+        <div class="wrapper">
             <header>
                 <h1>JM 소식</h1>
             </header>
-            <div>
-                <a href="/news/write"><button>글 작성</button></a>
+            <div class="board-top-menu">
+                <button id="sortButton">오래된 순</button>
+                <a href="/news/write"><button class="writebtn hidden">글 작성</button></a>
             </div>
-            <div id="newslist">컨텐츠
-                <ul>
+            <div>
+                <ul id="newslist">
                     <li th:each="news : ${allnews}">
                         <a th:href="'news/view/'+ ${news.id}">
                             <img th:src="${news.imagePath}">
@@ -86,6 +115,56 @@
     <div id="ss_admin" class="hidden" th:text="${session.admin}"></div>
     <!--/session-->
     <script type="text/javascript" th:src="@{/js/mainUI.js}"></script>
+    <script th:inline="javascript">
+        //관리자 로그인일 경우 글작성 활성화
+        if(/*[[${session.admin}]]*/ "" == null || /*[[${session.admin}]]*/ "0" == "0"){
+            document.getElementsByClassName("writebtn")[0].classList.remove("hidden");
+        }
+        //리스트 생성 및 정렬기능 함수
+        const sort = (() => {
+            const newslist = document.getElementById("newslist");
+            const sortButton = document.getElementById("sortButton");
+            const allnews = /*[[${allnews}]]*/ "";
+            let listString = "";
+            function newer() {
+                listString = "";
+                for (let i = allnews.length - 1; i >= 0; i--) {
+                    listString += `
+                <li>
+                    <a href = "news/view/${allnews[i].id}">
+                        <img src="${allnews[i].imagePath}">
+                        <span>${allnews[i].title}</span>
+                    </a>
+                </li>`
+                }
+                newslist.innerHTML = listString;
+                sortButton.setAttribute("onclick","sort('older')");
+                sortButton.innerHTML = "오래된 순";
+            }
+            function older(){
+                listString = "";
+                for (let i = 0; i < allnews.length; i++) {
+                    listString += `
+                <li>
+                    <a href = "news/view/${allnews[i].id}">
+                        <img src="${allnews[i].imagePath}">
+                        <span>${allnews[i].title}</span>
+                    </a>
+                </li>`
+                }
+                newslist.innerHTML = listString;
+                sortButton.setAttribute("onclick","sort('newer')");
+                sortButton.innerHTML = "최근 순";
+            }
+            newer();
+            return ((option) => {
+                switch(option){
+                    case 'newer' : newer(); break;
+                    case 'older' : older(); break;
+                }
+            });
+        })();
+    </script>
 </body>
 
 </html>
