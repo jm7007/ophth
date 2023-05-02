@@ -117,7 +117,7 @@
     <script type="text/javascript" th:src="@{/js/mainUI.js}"></script>
     <script th:inline="javascript">
         //관리자 로그인일 경우 글작성 활성화
-        if(/*[[${session.admin}]]*/ "" == null || /*[[${session.admin}]]*/ "0" == "0"){
+        if(/*[[${session.admin}]]*/ "0" == "0"){
             document.getElementsByClassName("writebtn")[0].classList.remove("hidden");
         }
         //리스트 생성 및 정렬기능 함수

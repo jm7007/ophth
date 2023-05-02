@@ -75,6 +75,8 @@ public class UserService {
         if(newUser.getName() == null) newUser.setName(origin.getName()) ;
         if(newUser.getEmail() == null) newUser.setEmail(origin.getEmail()) ;
         if(newUser.getContact() == null) newUser.setContact(origin.getContact()) ;
+        if(newUser.getGender() == null) newUser.setGender(origin.getGender()) ;
+        if(newUser.getBirth() == null) newUser.setBirth(origin.getBirth()) ;
         return userRepository.modifyUser(id, newUser);
     }
 

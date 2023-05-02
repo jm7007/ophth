@@ -1,9 +1,9 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <body>
-    <div id="msg" th:text="${msg}"></div>
-    <script>
-        alert(document.getElementById("msg").innerText);
+    <script th:inline="javascript">
+        const msg = /*[[${msg}]]*/"잘못된 접근입니다.";
+        alert(msg);
         history.go(-1);
     </script>
 </body>

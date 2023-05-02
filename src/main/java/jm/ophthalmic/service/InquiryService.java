@@ -30,6 +30,9 @@ public class InquiryService {
     public Optional<Inquiry> findOnebyId(Long review_id){
         return inquiryRepository.findbyId(review_id);
     }
+    public List<Inquiry> findOnebyUserId(Long id){
+        return inquiryRepository.findbyUserId(id);
+    }
     public Inquiry saveImageDetail(Inquiry inquiry){
         if(inquiry.getInquiry_image() instanceof MultipartFile mf){
             //원본파일의 이름

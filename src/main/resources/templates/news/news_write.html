@@ -7,20 +7,28 @@
     <meta http-equiv="Cache-Control" content="no-cache" />
     <title>JM안과</title>
     <link th:href="@{/css/main.css}" rel="stylesheet" />
+    <link th:href="@{/css/news.css}" rel="stylesheet" />
 </head>
 
-<body>
+<body class="background-img-9">
     <div id="top-nav"></div>
     <div class="body">
         <div class="wrapper">
-            <form id="news-form" action="/news/write" method="post" enctype="multipart/form-data">
-                <label for="news_title">제목</label>
-                <input id="news_title" name="news_title" type="text" maxlength="30" required>
-                <label for="news_content">내용</label>
-                <textarea id="news_content" name="news_content" required></textarea>
-                <lable for="news_image">이미지</lable>
-                <input id="news_image" name="news_image" type="file">
-                <button onclick="newsSubmit()">작성</button>
+            <h1>news 작성</h1>
+            <form id="register-form" action="/news/write" method="post" enctype="multipart/form-data">
+                <div style="width:100%;">
+                    <label for="news_title">제목</label>
+                    <input id="news_title" name="news_title" type="text" maxlength="30" required>
+                </div>
+                <div>
+                    <label for="news_content">내용</label>
+                    <textarea id="news_content" name="news_content" required></textarea>
+                </div>
+                <div>
+                    <label for="news_image">이미지</label>
+                    <input id="news_image" name="news_image" type="file">
+                </div>
+                <button class="button1" onclick="newsSubmit()">작성</button>
             </form>
         </div>
         <div id="footer"></div>
@@ -32,12 +40,12 @@
     <!--/session-->
     <script type="text/javascript" th:src="@{/js/mainUI.js}"></script>
     <script>
-        function newsSubmit(){
-            let form = document.getElementById("news-form");
-            if(form.checkValidity()){
+        function newsSubmit() {
+            let form = document.getElementById("register-form");
+            if (form.checkValidity()) {
                 form.submit();
                 alert("게시글 작성이 완료되었습니다.");
-            }else{
+            } else {
                 alert("잘못된 형식입니다.");
             }
         }

@@ -31,7 +31,8 @@ public class AdminController {
     @GetMapping("admin")
     public String admin(Model model,HttpSession session){
         if(session.getAttribute("admin") == null || (byte)session.getAttribute("admin") != 1){
-            return "execption/wrong";
+            model.addAttribute("msg", "해킹이 감지되었습니다. ip 추적을 실행합니다.");
+            return "exception/alertandback";
         }
         List<User> users = userService.findUsers();
         model.addAttribute("users", users);

@@ -10,64 +10,77 @@
     <link th:href="@{/css/admin.css}" rel="stylesheet" />
 </head>
 
-<body>
+<body style="display: flex;
+flex-direction: column;" class="background-img-9">
     <div id="top-nav"></div>
-    <div class="row-11">
-        <div id="admin-nav" class="col-2">
-            <h1 class="row">관리자 메뉴</h1>
-            <ul class="row-12">
-                <li id="btn-rs">예약 관리</li>
-                <li id="btn-user">회원 관리</li>
-                <li id="btn-inquiry">문의 관리</li>
-            </ul>
-        </div>
-        <div class="col-10">
+    <div class="wrapper col-9" style="margin: 0 auto;">
+        <h1 class="row">관리자 메뉴</h1>
+        <ul class="table-button">
+            <li id="btn-rs">예약 관리</li>
+            <li id="btn-user">회원 관리</li>
+            <li id="btn-inquiry">문의 관리</li>
+            <li class="rest-space"></li>
+        </ul>
+        <div class="table-container">
             <table id="table-rs" class="table-1">
                 <thead>
                     <tr>
-                        <th>id</th>
-                        <th>이름</th>
-                        <th>연락처</th>
-                        <th>예약시간</th>
-                        <th>상담내용</th>
-                        <th>회원 여부</th>
+                        <th class="td-0">id</th>
+                        <th class="td-1">이름</th>
+                        <th class="td-2">연락처</th>
+                        <th class="td-3">예약시간</th>
+                        <th class="td-4">상담내용</th>
+                        <th class="td-5">회원 여부</th>
+                        <th class="td-6">방문 여부</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr th:each="reservation : ${reservations}">
-                        <td th:text="${reservation.rs_id}"></td>
-                        <td th:text="${reservation.rs_name}"></td>
-                        <td th:text="${reservation.rs_contact}"></td>
-                        <td th:text="${reservation.rs_datetime}"></td>
-                        <td th:text="${reservation.rs_info}"></td>
-                        <td th:text="${reservation.rs_ifuser}"></td>
+                        <td class="td-0" th:text="${reservation.rs_id}"></td>
+                        <td class="td-1" th:text="${reservation.rs_name}"></td>
+                        <td class="td-2" th:text="${reservation.rs_contact}"></td>
+                        <td class="td-3" th:text="${reservation.rs_datetime}"></td>
+                        <td class="td-4" th:text="${reservation.rs_info}"></td>
+                        <td class="td-5" th:text="${reservation.rs_ifuser}"></td>
+                        <td class="td-6" th:text="${reservation.rs_ifvisit}"></td>
                     </tr>
                 </tbody>
             </table>
             <table id="table-user" class="table-1 hidden">
                 <thead>
                     <tr>
-                        <th>id</th>
-                        <th>이름</th>
-                        <th>연락처</th>
-                        <th>아이디</th>
-                        <th>비밀번호</th>
-                        <th>메일</th>
-                        <th>성별</th>
-                        <th>생일</th>
+                        <th class="td-0">id</th>
+                        <th class="td-1">수정</th>
+                        <th class="td-2">삭제</th>
+                        <th class="td-3">이름</th>
+                        <th class="td-4">연락처</th>
+                        <th class="td-5">아이디</th>
+                        <th class="td-6">비밀번호</th>
+                        <th class="td-7">메일</th>
+                        <th class="td-8">성</th>
+                        <th class="td-9">생일</th>
+                        <th class="td-10">M</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr th:each="user : ${users}">
-                        <td th:text="${user.id}"></td>
-                        <td th:text="${user.name}"></td>
-                        <td th:text="${user.contact}"></td>
-                        <td th:text="${user.account}"></td>
-                        <td th:text="${user.password}"></td>
-                        <td th:text="${user.email}"></td>
-                        <td th:text="${user.gender}"></td>
-                        <td th:text="${user.birth}"></td>
-                        <td th:text="${user.admin}"></td>
+                    <tr th:id="'user-row-'+${user.id}" th:each="user : ${users}">
+                        <td class="td-0" th:text="${user.id}"></td>
+                        <td class="td-1 modify-button" th:id="'modify-user-button-'+${user.id}"
+                            th:onclick="'modifyUserButton('+${user.id}+');'">수정</td>
+                        <td class="td-2 delete-button" th:onclick="'deleteUserButton('+${user.id}+');'">삭제</td>
+                        <td class="td-3"><input th:id="'admin-user-name-'+${user.id}" type="text"
+                                th:value="${user.name}" readonly></td>
+                        <td class="td-4"><input th:id="'admin-user-contact-'+${user.id}" type="text"
+                                th:value="${user.contact}" readonly></td>
+                        <td class="td-5" th:text="${user.account}"></td>
+                        <td class="td-6"><input th:id="'admin-user-password-'+${user.id}" type="text"
+                                th:value="${user.password}" readonly></td>
+                        <td class="td-7"><input th:id="'admin-user-email-'+${user.id}" type="text"
+                                th:value="${user.email}" readonly></td>
+                        <td class="td-8" th:text="${user.gender}"></td>
+                        <td class="td-9" th:text="${user.birth}"></td>
+                        <td class="td-10"><input th:id="'admin-user-admin-'+${user.id}" type="text"
+                                th:value="${user.admin}" readonly></td>
                     </tr>
                 </tbody>
             </table>
@@ -108,6 +121,9 @@
     <!--/session-->
     <script src="/js/mainUI.js"></script>
     <script src="/js/admin.js"></script>
+    <script>
+        
+    </script>
 </body>
 
 </html>

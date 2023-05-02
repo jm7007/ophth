@@ -1,0 +1,89 @@
+.wrapper {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: center;
+}
+
+h1 {
+    font-size: 30px;
+    margin-top: 70px;
+    align-self: center;
+}
+
+input {
+    border: 0.5px solid gray;
+    font-size: 15px;
+    padding: 10px;
+    margin: 5px 0 0;
+    border-radius: 5px;
+}
+
+input:focus {
+    border-color: dodgerblue;
+}
+
+#register-form {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    padding: 20px 50px;
+    border: 0.5px solid gray;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.7);
+    position: relative;
+}
+
+#register-form label {
+    font-size: 15px;
+    font-family: sans-serif;
+    font-weight: 600;
+}
+
+#register-form>div {
+    display: flex;
+    flex-direction: column;
+    min-width: 200px;
+    margin-top: 20px;
+}
+
+#register-form textarea {
+    width: 700px;
+    height: 300px;
+    font-size: 17px;
+    padding: 10px;
+    border: 1px solid gray;
+    border-radius: 10px;
+    font-family: sans-serif;
+}
+
+header {
+    background-color: rgba(30, 144, 255, 0.1);
+    border-radius: 10px;
+    padding: 30px;
+    align-self: center;
+}
+
+header>p {
+    font-size: 12px;
+}
+
+.findbtn {
+    position: absolute;
+    top: -60px;
+    right: 0;
+    border: 5px outset cornflowerblue;
+    border-radius: 5px;
+    background-color: cornflowerblue;
+    color: white;
+    font-size: 20px;
+    padding: 5px;
+    font-weight: 600;
+    font-family: sans-serif;
+}
+
+#news_title {
+    width: 100%;
+}

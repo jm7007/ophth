@@ -12,4 +12,5 @@ public class Reservation {
     private String rs_info;
     private Long rs_user_id;
     private Byte rs_ifuser;
+    private Integer rs_ifvisit;
 }

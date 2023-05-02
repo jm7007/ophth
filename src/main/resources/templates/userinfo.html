@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <title>JM안과</title>
+    <link th:href="@{/css/main.css}" rel="stylesheet" />
+    <style>
+        .wrapper{
+            align-self: center;
+        }
+        [class^="info-container-"]{
+            display:flex;
+            flex-direction: column;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="top-nav"></div>
+    <div class="body">
+        <div class="wrapper col-9">
+            <div class="info-container-left col-5">
+                <div class="login-info">
+                    <h2>[[${user.account}]]</h2>
+                    <p>[[${user.name}]]님</p>
+                    <p>[[${user.email}]]</p>
+                </div>
+                <div class="userinfo-usermenu">
+                    <a href="/logout"><button>로그아웃</button></a>
+                    <a href="/modifyuser"><button>회원수정</button></a>
+                    <form action="/user/delete" method="post"><button>회원탈퇴</button></form>
+                </div>
+            </div>
+            <div class="info-container-right col-7">
+                <h2>내 예약</h2>
+                <ul>
+                    <li>예약1</li>
+                    <li>에약2</li>
+                </ul>
+                <div>
+                <h2>내 문의</h2>
+                <span>비회원 문의찾기</span>
+            </div>
+                <ul>
+                    <p>없음</p>
+                </ul>
+                <div class="bottom-menu">
+                    <button>문의하기</button>
+                    <button>방문예약</button>
+                    <button>비회원 문의찾기</button>
+                </div>
+            </div>
+        </div>
+        <div id="footer"></div>
+    </div>
+    <!--session-->
+    <div id="ss_id" class="hidden" th:text="${session.id}"></div>
+    <div id="ss_name" class="hidden" th:text="${session.name}"></div>
+    <div id="ss_admin" class="hidden" th:text="${session.admin}"></div>
+    <!--/session-->
+    <script type="text/javascript" th:src="@{/js/mainUI.js}"></script>
+</body>
+
+</html>

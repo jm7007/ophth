@@ -124,7 +124,7 @@ function makeTopNav() {
         const loginFunction = document.createElement("ul"); //보조메뉴 리스트를 담을 ul
         // loginFunction.setAttribute("class","hidden");
         loginFunction.innerHTML =
-            `<li><a href='#'>회원 정보</a></li>
+            `<li><a href='/userinfo'>회원 정보</a></li>
         <li><a href='/modifyuser'>회원 수정</a></li>
         <li><a href='/logout'>로그 아웃</a></li>`
         logined.appendChild(loginFunction);
