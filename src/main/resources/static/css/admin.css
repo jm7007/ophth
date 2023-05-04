@@ -82,3 +82,9 @@
     color:red;
     font-weight: 1000;
 }
+.ifdone-true{
+    background-color:mediumseagreen;
+}
+.ifdone-false{
+    background-color:gold;
+}

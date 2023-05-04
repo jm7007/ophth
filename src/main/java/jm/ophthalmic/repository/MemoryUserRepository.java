@@ -144,5 +144,16 @@ public class MemoryUserRepository implements UserRepository{
         u8.setGender("W");
         u8.setAdmin((byte)0);
         save(u8);
+
+        User u9 = new User();
+        u9.setAccount("java1234");
+        u9.setPassword("1234");
+        u9.setEmail("javajoa@javajava.script");
+        u9.setName("감자바");
+        u9.setContact("01039394747");
+        u9.setBirth(LocalDate.of(1994,4,4));
+        u9.setGender("M");
+        u9.setAdmin((byte)0);
+        save(u9);
     }
 }

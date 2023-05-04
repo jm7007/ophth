@@ -87,28 +87,28 @@ flex-direction: column;" class="background-img-9">
             <table id="table-inquiry" class="table-1 hidden">
                 <thead>
                     <tr>
-                        <th>id</th>
-                        <th>제목</th>
-                        <th>내용</th>
-                        <th>이미지</th>
-                        <th>작성시간</th>
-                        <th>이름</th>
-                        <th>연락처</th>
-                        <th>조회비밀번호</th>
-                        <th>유저id</th>
+                        <th class="td-0">id</th>
+                        <th class="td-1">고객명</th>
+                        <th class="td-2">제목</th>
+                        <th class="td-3">내용</th>
+                        <th class="td-4">이미지</th>
+                        <th class="td-5">작성시간</th>
+                        <th class="td-6">연락처</th>
+                        <th class="td-7">답변상태</th>
+                        <th class="td-8">담당자id</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr th:each="iq : ${inquiries}">
-                        <td th:text="${iq.inquiry_id}"></td>
-                        <td th:text="${iq.inquiry_title}"></td>
-                        <td th:text="${iq.inquiry_content}"></td>
-                        <td><img th:src="${iq.inquiry_imagePath}" th:alt="${iq.inquiry_imagePath}"></td>
-                        <td th:text="${iq.inquiry_create_datetime}"></td>
-                        <td th:text="${iq.inquiry_name}"></td>
-                        <td th:text="${iq.inquiry_contact}"></td>
-                        <td th:text="${iq.inquiry_password}"></td>
-                        <td th:text="${iq.user_id}"></td>
+                        <td class="td-0" th:text="${iq.inquiry_id}"></td>
+                        <td class="td-1" th:text="${iq.inquiry_name}"></td>
+                        <td class="td-2"><a th:href="|/inquiry/view/${iq.inquiry_id}|"><p th:text="${iq.inquiry_title}"></p></a></td>
+                        <td class="td-3"><a th:href="|/inquiry/view/${iq.inquiry_id}|"><pre th:text="${#strings.abbreviate(iq.inquiry_content,10)}"></pre></a></td>
+                        <td class="td-4"><img th:src="${iq.inquiry_imagePath}" th:alt="${iq.inquiry_imagePath}"></td>
+                        <td class="td-5" th:text="${iq.inquiry_create_datetime}"></td>
+                        <td class="td-6" th:text="${iq.inquiry_contact}"></td>
+                        <td class="td-7 ifdone" th:text="${iq.inquiry_ifdone}"></td>
+                        <td class="td-8" th:text="${iq.inquiry_adminUserId}"></td>
                     </tr>
                 </tbody>
             </table>
@@ -121,8 +121,15 @@ flex-direction: column;" class="background-img-9">
     <!--/session-->
     <script src="/js/mainUI.js"></script>
     <script src="/js/admin.js"></script>
-    <script>
-        
+    <script inline="javascript">
+        document.querySelectorAll(".ifdone").forEach( node => {
+            if(node.innerHTML == '1'){
+                node.innerHTML="완료";
+                node.classList.add("ifdone-true");
+            }else{
+                node.innerHTML="대기";
+                node.classList.add("ifdone-false");
+            }});
     </script>
 </body>
 

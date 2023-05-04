@@ -150,7 +150,7 @@ public class MemoryReservationRepository implements ReservationRepository {
 
         Reservation r9 = new Reservation();
         r9.setRs_name("이영희");
-        r9.setRs_contact("010-1234-5678");
+        r9.setRs_contact("01012345678");
         r9.setRs_datetime(LocalDateTime.of(2023, 4, 8, 9, 0, 0));
         r9.setRs_info("발열, 기침");
         r9.setRs_user_id(3L);
@@ -158,7 +158,7 @@ public class MemoryReservationRepository implements ReservationRepository {
 
         Reservation r10 = new Reservation();
         r10.setRs_name("손흥민");
-        r10.setRs_contact("010-5555-5555");
+        r10.setRs_contact("01055555555");
         r10.setRs_datetime(LocalDateTime.of(2023, 4, 11, 10, 0, 0));
         r10.setRs_info("인후통");
         r10.setRs_user_id(4L);
@@ -166,7 +166,7 @@ public class MemoryReservationRepository implements ReservationRepository {
 
         Reservation r11 = new Reservation();
         r11.setRs_name("김민수");
-        r11.setRs_contact("010-2222-2222");
+        r11.setRs_contact("01022222222");
         r11.setRs_datetime(LocalDateTime.of(2023, 4, 14, 11, 0, 0));
         r11.setRs_info("복통");
         r11.setRs_user_id(2L);
@@ -174,7 +174,7 @@ public class MemoryReservationRepository implements ReservationRepository {
 
         Reservation r12 = new Reservation();
         r12.setRs_name("박영호");
-        r12.setRs_contact("010-4444-4444");
+        r12.setRs_contact("01044444444");
         r12.setRs_datetime(LocalDateTime.of(2023, 4, 15, 12, 0, 0));
         r12.setRs_info("두통");
         r12.setRs_user_id(1L);
@@ -182,7 +182,7 @@ public class MemoryReservationRepository implements ReservationRepository {
 
         Reservation r13 = new Reservation();
         r13.setRs_name("최영철");
-        r13.setRs_contact("010-3333-3333");
+        r13.setRs_contact("01033333333");
         r13.setRs_datetime(LocalDateTime.of(2023, 4, 18, 14, 0, 0));
         r13.setRs_info("가래");
         r13.setRs_user_id(3L);
@@ -190,7 +190,7 @@ public class MemoryReservationRepository implements ReservationRepository {
 
         Reservation r14 = new Reservation();
         r14.setRs_name("홍길순");
-        r14.setRs_contact("010-9999-9999");
+        r14.setRs_contact("01099999999");
         r14.setRs_datetime(LocalDateTime.of(2023, 4, 20, 15, 0, 0));
         r14.setRs_info("눈물나요");
         r14.setRs_user_id(2L);
@@ -198,11 +198,19 @@ public class MemoryReservationRepository implements ReservationRepository {
 
         Reservation r15 = new Reservation();
         r15.setRs_name("김진아");
-        r15.setRs_contact("010-7777-7777");
+        r15.setRs_contact("01077777777");
         r15.setRs_datetime(LocalDateTime.of(2023, 4, 21, 9, 0, 0));
         r15.setRs_info("몸살");
         r15.setRs_user_id(8L);
         r15.setRs_ifuser((byte) 1);
+
+        Reservation r16 = new Reservation();
+        r16.setRs_name("감자바");
+        r16.setRs_contact("01039394747");
+        r16.setRs_datetime(LocalDateTime.of(2023, 5, 21, 11, 0, 0));
+        r16.setRs_info("라식수술 검사");
+        r16.setRs_user_id(9L);
+        r16.setRs_ifuser((byte) 1);
 
         save(r1);
         save(r2);

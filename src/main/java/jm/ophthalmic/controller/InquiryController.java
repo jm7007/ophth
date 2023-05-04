@@ -1,8 +1,11 @@
 package jm.ophthalmic.controller;
 
+import java.time.LocalDateTime;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import jakarta.servlet.http.HttpSession;
 import jm.ophthalmic.domain.Inquiry;
@@ -60,12 +63,32 @@ public class InquiryController {
         if(session.getAttribute("id") != null){
             inquiry.setUser_id((long)session.getAttribute("id"));
         }
+        //생성날짜 삽입
+        inquiry.setInquiry_create_datetime(LocalDateTime.now());
+
         //이미지 파일이 있을 경우 이미지 정보 디테일을 저장하는 메서드 호출
         if(inquiry.getInquiry_image().getOriginalFilename() != ""){
-            inquiry = inquiryService.saveImageDetail(inquiry);
+            inquiryService.register(inquiryService.saveImageDetail(inquiry));
+        }else{
+            //저장 이미지 없을시 기본이미지 저장
+            inquiryService.register(inquiryService.saveStandardImage(inquiry));
         }
-        inquiryService.register(inquiry);
         return "redirect:/";
     }
-    
+    @GetMapping("/inquiry/view/{id}")
+    public String inquiryView(@PathVariable("id") Long id,Model model){
+        model.addAttribute("inquiry",
+        inquiryService.findOnebyId(id).get());
+        return "inquiry/iq-view";
+    }
+    @PostMapping("/inquiry/answer")
+    public String inquiryAnswer(Inquiry inquiry, Model model){
+        Long result = inquiryService.registerAnswer(inquiry);
+        if(result == 0l){
+            model.addAttribute("msg", "답변 작성이 실패하였습니다.");
+            return "exception/alertandback";
+        }
+        model.addAttribute("msg", "답변 작성이 완료되었습니다. id: "+result);
+        return "redirect:/inquiry/view/"+result;
+    }
 }

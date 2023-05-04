@@ -54,4 +54,13 @@ public class InquiryService {
             return null;
         }
     }
+    public Inquiry saveStandardImage(Inquiry inquiry){
+        inquiry.setInquiry_imageName("noimage.png");
+        inquiry.setInquiry_imagePath("/images/noimage.png");
+        return inquiry;
+    }
+    public Long registerAnswer(Inquiry answer){
+        return inquiryRepository.saveAnswer(answer).getInquiry_id();
+        
+    }
 }

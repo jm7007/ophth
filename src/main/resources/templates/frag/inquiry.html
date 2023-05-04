@@ -1,0 +1,15 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+    <div th:fragment="inquiry-ifdone-display">
+        <style>
+            .inquiry-state-ifdone {
+                border: 2px solid;
+            }
+        </style>
+        <div th:if="${inquiry.inquiry_ifdone}" class="inquiry-state-ifdone" style="background-color:mediumseagreen">답변완료</div>
+        <div th:if="!${inquiry.inquiry_ifdone}" class="inquiry-state-ifdone" style="background-color:gold">답변 대기</div>
+    </div>
+</body>
+
+</html>

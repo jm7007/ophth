@@ -13,4 +13,5 @@ public interface InquiryRepository {
     List<Inquiry> findbyUserId(Long user_id);
     List<Inquiry> findAll();
     Long storageSize();
+    Inquiry saveAnswer(Inquiry answer);
 }

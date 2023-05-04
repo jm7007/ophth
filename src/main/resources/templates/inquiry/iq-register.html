@@ -39,7 +39,6 @@
             </div>
                 <input class="hidden" type="text" id="inquiry_name" name="inquiry_name" th:value="${iqname}">
                 <input class="hidden" type="tel" id="inquiry_contact" name="inquiry_contact" th:value="${iqcontact}">
-                <input class="hidden" type="datetime-local" id="inquiry_create_datetime" name="inquiry_create_datetime">
                 <button class="button1" style="width: 50%; align-self: center;" onclick="iqSubmit()">문의하기</button>
             </form>
         </div>
@@ -67,13 +66,8 @@
             }
         }
         inputPassword();
-        //자동으로 작성 날짜 삽입
-        function inputCreateTime() {
-            document.getElementById("inquiry_create_datetime").setAttribute("value", new Date().toISOString().slice(0, 16));
-        }
         //서브밋 하기 직전의 프로세스를 위한 서브밋 함수
         function iqSubmit() {
-            inputCreateTime();
             let form = document.getElementById("register-form");
             if (form.checkValidity()) {
                 form.submit();

@@ -21,4 +21,5 @@ public class Inquiry{
     private String inquiry_answer;
     private Byte inquiry_ifdone;
     private Long user_id;
+    private Long inquiry_adminUserId;
 }
